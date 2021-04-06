@@ -1,0 +1,890 @@
+swagger: "2.0"
+info:
+  description: "The 'RecyclEasy' is a web application, that helps people find places near them, where they can dispose recyclabe garbage. As well as, publish advertisements related to recyclable garbage managment and disposal."
+  version: "1.0.0"
+  title: "RecycleEasy"
+schemes:
+  - "https"
+  - "http"
+paths:
+  /register:
+    post:
+      tags:
+        - "auth"
+      summary: "Create an account"
+      description: ""
+      operationId: "createAccount"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "body"
+          name: "body"
+          description: "User data containing email and passwords"
+          required: true
+          schema:
+            $ref: "#/definitions/RegistrationData"
+      responses:
+        201:
+          description: "User registered successfully."
+        400:
+          description: "User's passwords do not match. The user's email is used in the application. The password is not strong enough."
+
+  /login:
+    post:
+      tags:
+        - "auth"
+      summary: "Loggin in to the system"
+      description: ""
+      operationId: "signIn"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "body"
+          name: "body"
+          description: "User data containing email and password"
+          required: true
+          schema:
+            $ref: "#/definitions/LoginData"
+      responses:
+        200:
+          description: "User logged in correctly"
+        400:
+          description: "Wrong password or email"
+        403:
+          description: "Only admin has access to this operation."
+
+  /resetPassword:
+    put:
+      tags:
+        - "auth"
+      summary: "Reset password to the system"
+      description: ""
+      operationId: "resetPassowrd"
+      consumes:
+        - "application/x-www-form-urlencoded"
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "formData"
+          type: string
+          name: "email"
+          description: "Account email"
+          required: true
+      responses:
+        200:
+          description: "Reset link has been sent to user's email."
+        400:
+          description: "User email not found."
+
+  /logout:
+    post:
+      tags:
+        - "auth"
+      summary: "Logging out from the system"
+      description: ""
+      operationId: "signOut"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "header"
+          type: string
+          name: "Authorization"
+          description: "Authorization header"
+          required: true
+      responses:
+        200:
+          description: "User correctly logged out"
+        403:
+          description: "Only admin has access to this operation."
+      security:
+        - recycleasy_auth:
+            - "write"
+            - "read"
+
+  /changePassword:
+    put:
+      tags:
+        - "auth"
+      summary: "Change user password"
+      description: ""
+      operationId: "changePassword"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "header"
+          type: string
+          name: "Authorization"
+          description: "Authorization header"
+          required: true
+        - in: "body"
+          name: "body"
+          description: "New password in duplicate"
+          required: true
+          schema:
+            $ref: "#/definitions/ChangePasswordData"
+      responses:
+        200:
+          description: "Password has been hanged"
+        400:
+          description: "Password is not strong. Passwords are not the same"
+        403:
+          description: "Only admin has access to this operation."
+      security:
+        - recycleasy_auth:
+            - "write"
+            - "read"
+
+  /deleteAccount:
+    delete:
+      tags:
+        - "auth"
+      summary: "Remove user account"
+      description: ""
+      operationId: "removeUserAccount"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "header"
+          type: string
+          name: "Authorization"
+          description: "Authorization header"
+          required: true
+      responses:
+        200:
+          description: "User account has been removed"
+        403:
+          description: "Only admin has access to this operation."
+      security:
+        - recycleasy_auth:
+            - "write"
+            - "read"
+
+
+  /place/create:
+    post:
+      tags:
+        - "place"
+      summary: "Create place"
+      description: ""
+      operationId: "createPlace"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "header"
+          type: string
+          name: "Authorization"
+          description: "Authorization header"
+          required: true
+        - in: "body"
+          name: "body"
+          description: "Place creation payload"
+          required: true
+          schema:
+            $ref: "#/definitions/PlaceCreationData"
+      responses:
+        200:
+          description: "Place has been created successfully."
+        400:
+          description: "Some of the required fields are missing."
+        403:
+          description: "Only admin has access to this operation."
+      security:
+        - recycleasy_auth:
+            - "write"
+            - "read"
+
+  /place/update/{placeId}:
+    put:
+      tags:
+        - "place"
+      summary: "Update place"
+      description: ""
+      operationId: "updatePlace"
+      consumes:
+        - "application/json"
+        - "application/x-www-form-urlencoded"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "header"
+          type: string
+          name: "Authorization"
+          description: "Authorization header"
+          required: true
+        - in: "body"
+          name: "body"
+          description: "Place update payload"
+          required: true
+          schema:
+            $ref: "#/definitions/PlaceUpdateData"
+        - name: "placeId"
+          in: "path"
+          description: "ID of place to update"
+          required: true
+          type: "integer"
+          format: "int64"
+      responses:
+        200:
+          description: "Place has been updated successfully."
+        400:
+          description: "User not sent name or place"
+        403:
+          description: "Only admin has access to this operation."
+        404:
+          description: "Place doesnt exist."
+      security:
+        - recycleasy_auth:
+            - "write"
+            - "read"
+
+  /place/delete/{placeId}:
+    delete:
+      tags:
+        - "place"
+      summary: "Delete place"
+      description: ""
+      operationId: "deletePlace"
+      consumes:
+        - "application/json"
+        - "application/x-www-form-urlencoded"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "header"
+          type: string
+          name: "Authorization"
+          description: "Authorization header"
+          required: true
+        - name: "placeId"
+          in: "path"
+          description: "ID of place to reove"
+          required: true
+          type: "integer"
+          format: "int64"
+      responses:
+        200:
+          description: "Place has been deleted."
+        403:
+          description: "Only admin has access to this operation.."
+        404:
+          description: "Place doesnt exist."
+      security:
+        - recycleasy_auth:
+            - "write"
+            - "read"
+
+  /place/getAll:
+    get:
+      tags:
+        - "place"
+      summary: "Get all places"
+      description: ""
+      operationId: "getAllPlaces"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      responses:
+        200:
+          description: "List of all places"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Place"
+
+
+  /place/getDetails/{placeId}:
+    get:
+      tags:
+        - "place"
+      summary: "Get place details"
+      description: ""
+      operationId: "placeDetails"
+      consumes:
+        - "application/json"
+        - "application/x-www-form-urlencoded"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "placeId"
+          in: "path"
+          description: "ID of place"
+          required: true
+          type: "integer"
+          format: "int64"
+      responses:
+        200:
+          description: "Details of place with given Id"
+          schema:
+            $ref: "#/definitions/PlaceDetails"
+        404:
+          description: "Place doesnt exist."
+
+
+  /place/filter:
+    post:
+      tags:
+        - "place"
+      summary: "Get places by specified filters"
+      description: ""
+      operationId: "getFilteredPlaces"
+      consumes:
+        - "application/json"
+        - "application/x-www-form-urlencoded"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "body"
+          name: "body"
+          description: "Place update payload"
+          required: true
+          schema:
+            $ref: "#/definitions/PlaceFilterData"
+      responses:
+        200:
+          description: "Returns objects meeting specified filters."
+          schema:
+            $ref: "#/definitions/Place"
+
+  /place/suggest:
+    post:
+      tags:
+        - "place"
+      summary: "Suggest new place"
+      description: ""
+      operationId: "sendSuggestion"
+      consumes:
+        - "application/json"
+        - "application/x-www-form-urlencoded"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "body"
+          name: "body"
+          description: "Place creation payload"
+          required: true
+          schema:
+            $ref: "#/definitions/PlaceCreationData"
+      responses:
+        200:
+          description: "Suggestion sent successfully."
+
+
+  /ad/create:
+    post:
+      tags:
+        - "advertisement"
+      summary: "Create advertisement"
+      description: ""
+      operationId: "advertisementCreate"
+      consumes:
+        - "application/json"
+        - "application/x-www-form-urlencoded"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "header"
+          type: string
+          name: "Authorization"
+          description: "Authorization header"
+          required: true
+        - in: "body"
+          name: "body"
+          description: "Advertisement creation body"
+          required: true
+          schema:
+            $ref: "#/definitions/AdvertisementCreationData"
+      responses:
+        200:
+          description: "Advertisement create successfully."
+        403:
+          description: "Only admin has access to this operation."
+      security:
+        - recycleasy_auth:
+            - "write"
+            - "read"
+
+  /ad/update/{advertisementId}:
+    put:
+      tags:
+        - "advertisement"
+      summary: "Edit advertisement with given id"
+      description: ""
+      operationId: "updateAdvertisement"
+      consumes:
+        - "application/json"
+        - "application/x-www-form-urlencoded"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "header"
+          type: string
+          name: "Authorization"
+          description: "Authorization header"
+          required: true
+        - name: "advertisementId"
+          in: "path"
+          description: "Advertisement to modify."
+          required: true
+          type: number
+      responses:
+        200:
+          description: "Advertisement updated successfully"
+        403:
+          description: "User not authorized."
+        404:
+          description: "Advertisement doesnt exist."
+      security:
+        - recycleasy_auth:
+            - "write"
+            - "read"
+
+  /ad/delete/{advertsiementId}:
+    delete:
+      tags:
+        - "advertisement"
+      summary: "Delete advertisement with given id"
+      description: ""
+      operationId: "deleteAdvertisement"
+      consumes:
+        - "application/json"
+        - "application/x-www-form-urlencoded"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "header"
+          type: string
+          name: "Authorization"
+          description: "Authorization header"
+          required: true
+        - name: "advertsiementId"
+          in: "path"
+          description: "Advertisement to delete."
+          required: true
+          type: number
+      responses:
+        200:
+          description: "Advertisement deleted successfully"
+        403:
+          description: "User not authorized."
+        404:
+          description: "Advertisment doesnt exist."
+      security:
+        - recycleasy_auth:
+            - "write"
+            - "read"
+
+  /ad/getAll:
+    get:
+      tags:
+        - "advertisement"
+      summary: "Shows all published advertisements"
+      description: ""
+      operationId: "allAdvertisements"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      responses:
+        200:
+          description: "All published advertisements"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Place"
+
+
+  /pending/getAll:
+    get:
+      tags:
+        - "admin"
+      summary: "Get all pending suggestions and advertisments waiting for approval"
+      description: ""
+      operationId: "allPending"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "header"
+          type: string
+          name: "Authorization"
+          description: "Authorization header"
+          required: true
+      responses:
+        200:
+          description: "All published advertisements"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Place"
+      security:
+        - recycleasy_auth:
+            - "read"
+
+
+  /place/approve/{suggestionId}:
+    post:
+      tags:
+        - "admin"
+      summary: "Approve suggestion with given ID."
+      description: ""
+      operationId: "approveSuggestion"
+      consumes:
+        - "application/json"
+        - "application/x-www-form-urlencoded"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "header"
+          type: string
+          name: "Authorization"
+          description: "Authorization header"
+          required: true
+        - name: "suggestionId"
+          in: "path"
+          description: "ID of place suggestion"
+          required: true
+          type: number
+      responses:
+        200:
+          description: "Place approved successfully."
+        403:
+          description: "Only admin has access to this operation."
+        404:
+          description: "Suggestion doesnt exist."
+      security:
+        - recycleasy_auth:
+            - "write"
+            - "read"
+
+  /place/reject/{suggestionId}:
+    post:
+      tags:
+        - "admin"
+      summary: "Reject place suggestion with given ID"
+      description: ""
+      operationId: "rejectSuggestion"
+      consumes:
+        - "application/json"
+        - "application/x-www-form-urlencoded"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "header"
+          type: string
+          name: "Authorization"
+          description: "Authorization header"
+          required: true
+        - name: "suggestionId"
+          in: "path"
+          description: "ID of place suggestion"
+          required: true
+          type: number
+      responses:
+        200:
+          description: "Place rejected successfully."
+        403:
+          description: "Only admin has access to this operation."
+        404:
+          description: "Suggestion doesnt exist."
+      security:
+        - recycleasy_auth:
+            - "write"
+            - "read"
+
+  /ad/approve/{advertisementId}:
+    post:
+      tags:
+        - "admin"
+      summary: "Approve advertisement with given ID."
+      description: ""
+      operationId: "approveAd"
+      consumes:
+        - "application/json"
+        - "application/x-www-form-urlencoded"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "header"
+          type: string
+          name: "Authorization"
+          description: "Authorization header"
+          required: true
+        - name: "advertisementId"
+          in: "path"
+          description: "ID of advertisement to approve"
+          required: true
+          type: number
+      responses:
+        200:
+          description: "Advertisement approved successfully."
+        403:
+          description: "Only admin has access to this operation."
+        404:
+          description: "Advertisement doesnt exist."
+      security:
+        - recycleasy_auth:
+            - "write"
+            - "read"
+
+  /ad/reject/{advertisementId}:
+    post:
+      tags:
+        - "admin"
+      summary: "Reject advertisement with given ID."
+      description: ""
+      operationId: "rejectAd"
+      consumes:
+        - "application/json"
+        - "application/x-www-form-urlencoded"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "header"
+          type: string
+          name: "Authorization"
+          description: "Authorization header"
+          required: true
+        - name: "advertisementId"
+          in: "path"
+          description: "ID of advertisement to reject"
+          required: true
+          type: number
+      responses:
+        200:
+          description: "Advertisement rejected successfully."
+        403:
+          description: "Only admin has access to this operation."
+        404:
+          description: "Advertisement doesnt exist."
+      security:
+        - recycleasy_auth:
+            - "write"
+            - "read"
+
+
+securityDefinitions:
+  recycleasy_auth:
+    type: "oauth2"
+    authorizationUrl: "http://find.your.team.com/login"
+    flow: "implicit"
+    scopes:
+      write: "modify data"
+      read: "read data"
+  api_key:
+    type: "apiKey"
+    name: "api_key"
+    in: "header"
+
+
+definitions:
+  RegistrationData:
+    type: object
+    required:
+      - email
+      - password
+      - repeatPassword
+      - acceptRules
+    properties:
+      email:
+        type: string
+      password:
+        type: string
+      repeatPassword:
+        type: string
+      acceptRules:
+        type: boolean
+
+  LoginData:
+    type: object
+    required:
+      - email
+      - password
+    properties:
+      email:
+        type: string
+      password:
+        type: string
+
+  ChangePasswordData:
+    type: object
+    required:
+      - newPassword
+      - password
+    properties:
+      password:
+        type: string
+      newPassword:
+        type: string
+
+
+  Place:
+    type: object
+    properties:
+      id:
+        type: number
+      name:
+        type: string
+      address:
+        type: string
+      locationX:
+        type: number
+      locationY:
+        type: number
+
+  PlaceDetails:
+    type: object
+    properties:
+      id:
+        type: number
+      name:
+        type: string
+      address:
+        type: string
+      locationX:
+        type: number
+      locationY:
+        type: number
+      opensAt:
+        type: string
+      closesAt:
+        type: string
+      phone:
+        type: string
+      email:
+        type: string
+
+  PlaceCreationData:
+    type: object
+    required:
+      - name
+      - address
+      - locationX
+      - locationY
+      - phone
+    properties:
+      name:
+        type: string
+      address:
+        type: string
+      locationX:
+        type: string
+      locationY:
+        type: string
+      phone:
+        type: string
+      opensAt:
+        type: string
+      closesAt:
+        type: string
+      garbageTypes:
+        type: array
+        items:
+          type: string
+
+  PlaceUpdateData:
+    type: object
+    required:
+      - name
+      - address
+      - locationX
+      - locationY
+      - phone
+    properties:
+      name:
+        type: string
+      address:
+        type: string
+      locationX:
+        type: string
+      locationY:
+        type: string
+      phone:
+        type: string
+      opensAt:
+        type: string
+      closesAt:
+        type: string
+      garbageTypes:
+        type: array
+        items:
+          type: string
+
+  PlaceFilterData:
+    type: object
+    properties:
+      city:
+        type: string
+      garbagetypes:
+        type: array
+        items:
+          type: string
+
+  AdvertisementCreationData:
+    type: object
+    required:
+      - title
+      - description
+      - offerType
+      - phone
+      - email
+    properties:
+      title:
+        type: string
+      description:
+        type: string
+      offerType:
+        type: string
+      email:
+        type: string
+      phone:
+        type: string
+
+  AdvertisementData:
+    type: object
+    properties:
+      id:
+        type: number
+      title:
+        type: string
+      description:
+        type: string
+      offerType:
+        type: string
+      email:
+        type: string
+      phone:
+        type: string
+
+
+
+  PendingData:
+    type: object
+    properties:
+      pendingSuggestions:
+        type: array
+        items:
+          $ref: "#/definitions/PlaceCreationData"
+      pendingAdvertisements:
+        type: array
+        items:
+          $ref: "#/definitions/AdvertisementData"
+        
+    
+    
+    
+    
