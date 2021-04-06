@@ -1,2 +1,5 @@
 /backend/target/
 /frontend/node_modules/
+/backend/backend.iml
+/recycle-easy.iml
+/.idea/
