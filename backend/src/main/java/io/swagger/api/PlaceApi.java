@@ -5,8 +5,12 @@
  */
 package io.swagger.api;
 
+import io.swagger.DTOs.PlaceCreationDTO;
+import io.swagger.DTOs.PlaceUpdateDTO;
 import io.swagger.annotations.*;
-import io.swagger.model.*;
+import io.swagger.entities.Place;
+import io.swagger.model.PlaceDetails;
+import io.swagger.model.PlaceFilterData;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -53,7 +57,7 @@ public interface PlaceApi {
 			produces = {"application/json"},
 			consumes = {"application/json"},
 			method = RequestMethod.POST)
-	ResponseEntity<Void> createPlace(@ApiParam(value = "Authorization header", required = true) @RequestHeader(value = "Authorization", required = true) String authorization, @ApiParam(value = "Place creation payload", required = true) @Valid @RequestBody PlaceCreationData body);
+	ResponseEntity<Void> createPlace(@ApiParam(value = "Authorization header", required = true) @RequestHeader(value = "Authorization", required = true) String authorization, @ApiParam(value = "Place creation payload", required = true) @Valid @RequestBody PlaceCreationDTO body);
 
 
 	@ApiOperation(value = "Delete place", nickname = "deletePlace", notes = "", authorizations = {
@@ -128,7 +132,7 @@ public interface PlaceApi {
 			produces = {"application/json"},
 			consumes = {"application/json", "application/x-www-form-urlencoded"},
 			method = RequestMethod.POST)
-	ResponseEntity<Void> sendSuggestion(@ApiParam(value = "Place creation payload", required = true) @Valid @RequestBody PlaceCreationData body);
+	ResponseEntity<Void> sendSuggestion(@ApiParam(value = "Place creation payload", required = true) @Valid @RequestBody PlaceCreationDTO body);
 
 
 	@ApiOperation(value = "Update place", nickname = "updatePlace", notes = "", authorizations = {
@@ -146,6 +150,6 @@ public interface PlaceApi {
 			produces = {"application/json"},
 			consumes = {"application/json", "application/x-www-form-urlencoded"},
 			method = RequestMethod.PUT)
-	ResponseEntity<Void> updatePlace(@ApiParam(value = "Authorization header", required = true) @RequestHeader(value = "Authorization", required = true) String authorization, @ApiParam(value = "Place update payload", required = true) @Valid @RequestBody PlaceUpdateData body, @ApiParam(value = "ID of place to update", required = true) @PathVariable("placeId") Long placeId);
+	ResponseEntity<Void> updatePlace(@ApiParam(value = "Authorization header", required = true) @RequestHeader(value = "Authorization", required = true) String authorization, @ApiParam(value = "Place update payload", required = true) @Valid @RequestBody PlaceUpdateDTO body, @ApiParam(value = "ID of place to update", required = true) @PathVariable("placeId") Long placeId);
 
 }

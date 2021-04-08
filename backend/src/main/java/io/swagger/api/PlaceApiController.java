@@ -1,8 +1,12 @@
 package io.swagger.api;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import io.swagger.DTOs.PlaceCreationDTO;
+import io.swagger.DTOs.PlaceUpdateDTO;
 import io.swagger.annotations.ApiParam;
-import io.swagger.model.*;
+import io.swagger.entities.Place;
+import io.swagger.model.PlaceDetails;
+import io.swagger.model.PlaceFilterData;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -40,7 +44,7 @@ public class PlaceApiController implements PlaceApi {
 		return new ResponseEntity<Void>(HttpStatus.NOT_IMPLEMENTED);
 	}
 
-	public ResponseEntity<Void> createPlace(@ApiParam(value = "Authorization header", required = true) @RequestHeader(value = "Authorization", required = true) String authorization, @ApiParam(value = "Place creation payload", required = true) @Valid @RequestBody PlaceCreationData body) {
+	public ResponseEntity<Void> createPlace(@ApiParam(value = "Authorization header", required = true) @RequestHeader(value = "Authorization", required = true) String authorization, @ApiParam(value = "Place creation payload", required = true) @Valid @RequestBody PlaceCreationDTO body) {
 		String accept = request.getHeader("Accept");
 		return new ResponseEntity<Void>(HttpStatus.NOT_IMPLEMENTED);
 	}
@@ -97,12 +101,12 @@ public class PlaceApiController implements PlaceApi {
 		return new ResponseEntity<Void>(HttpStatus.NOT_IMPLEMENTED);
 	}
 
-	public ResponseEntity<Void> sendSuggestion(@ApiParam(value = "Place creation payload", required = true) @Valid @RequestBody PlaceCreationData body) {
+	public ResponseEntity<Void> sendSuggestion(@ApiParam(value = "Place creation payload", required = true) @Valid @RequestBody PlaceCreationDTO body) {
 		String accept = request.getHeader("Accept");
 		return new ResponseEntity<Void>(HttpStatus.NOT_IMPLEMENTED);
 	}
 
-	public ResponseEntity<Void> updatePlace(@ApiParam(value = "Authorization header", required = true) @RequestHeader(value = "Authorization", required = true) String authorization, @ApiParam(value = "Place update payload", required = true) @Valid @RequestBody PlaceUpdateData body, @ApiParam(value = "ID of place to update", required = true) @PathVariable("placeId") Long placeId) {
+	public ResponseEntity<Void> updatePlace(@ApiParam(value = "Authorization header", required = true) @RequestHeader(value = "Authorization", required = true) String authorization, @ApiParam(value = "Place update payload", required = true) @Valid @RequestBody PlaceUpdateDTO body, @ApiParam(value = "ID of place to update", required = true) @PathVariable("placeId") Long placeId) {
 		String accept = request.getHeader("Accept");
 		return new ResponseEntity<Void>(HttpStatus.NOT_IMPLEMENTED);
 	}

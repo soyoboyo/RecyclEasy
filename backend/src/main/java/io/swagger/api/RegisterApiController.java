@@ -1,8 +1,8 @@
 package io.swagger.api;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import io.swagger.DTOs.RegistrationDTO;
 import io.swagger.annotations.ApiParam;
-import io.swagger.model.RegistrationData;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -30,7 +30,7 @@ public class RegisterApiController implements RegisterApi {
 		this.request = request;
 	}
 
-	public ResponseEntity<Void> createAccount(@ApiParam(value = "User data containing email and passwords", required = true) @Valid @RequestBody RegistrationData body) {
+	public ResponseEntity<Void> createAccount(@ApiParam(value = "User data containing email and passwords", required = true) @Valid @RequestBody RegistrationDTO body) {
 		String accept = request.getHeader("Accept");
 		return new ResponseEntity<Void>(HttpStatus.NOT_IMPLEMENTED);
 	}

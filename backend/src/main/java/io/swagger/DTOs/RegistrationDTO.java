@@ -1,4 +1,4 @@
-package io.swagger.model;
+package io.swagger.DTOs;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModelProperty;
@@ -14,7 +14,7 @@ import java.util.Objects;
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2021-04-05T23:15:12.065+02:00")
 
 
-public class RegistrationData {
+public class RegistrationDTO {
 	@JsonProperty("email")
 	private String email = null;
 
@@ -27,7 +27,7 @@ public class RegistrationData {
 	@JsonProperty("acceptRules")
 	private Boolean acceptRules = null;
 
-	public RegistrationData email(String email) {
+	public RegistrationDTO email(String email) {
 		this.email = email;
 		return this;
 	}
@@ -49,7 +49,7 @@ public class RegistrationData {
 		this.email = email;
 	}
 
-	public RegistrationData password(String password) {
+	public RegistrationDTO password(String password) {
 		this.password = password;
 		return this;
 	}
@@ -71,7 +71,7 @@ public class RegistrationData {
 		this.password = password;
 	}
 
-	public RegistrationData repeatPassword(String repeatPassword) {
+	public RegistrationDTO repeatPassword(String repeatPassword) {
 		this.repeatPassword = repeatPassword;
 		return this;
 	}
@@ -93,7 +93,7 @@ public class RegistrationData {
 		this.repeatPassword = repeatPassword;
 	}
 
-	public RegistrationData acceptRules(Boolean acceptRules) {
+	public RegistrationDTO acceptRules(Boolean acceptRules) {
 		this.acceptRules = acceptRules;
 		return this;
 	}
@@ -124,7 +124,7 @@ public class RegistrationData {
 		if (o == null || getClass() != o.getClass()) {
 			return false;
 		}
-		RegistrationData registrationData = (RegistrationData) o;
+		RegistrationDTO registrationData = (RegistrationDTO) o;
 		return Objects.equals(this.email, registrationData.email) &&
 				Objects.equals(this.password, registrationData.password) &&
 				Objects.equals(this.repeatPassword, registrationData.repeatPassword) &&

@@ -2,7 +2,7 @@ package io.swagger.api;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.swagger.annotations.ApiParam;
-import io.swagger.model.Place;
+import io.swagger.entities.Place;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;

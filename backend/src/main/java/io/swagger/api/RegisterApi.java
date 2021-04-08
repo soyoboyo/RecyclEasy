@@ -5,8 +5,8 @@
  */
 package io.swagger.api;
 
+import io.swagger.DTOs.RegistrationDTO;
 import io.swagger.annotations.*;
-import io.swagger.model.RegistrationData;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -30,6 +30,6 @@ public interface RegisterApi {
 			produces = {"application/json"},
 			consumes = {"application/json"},
 			method = RequestMethod.POST)
-	ResponseEntity<Void> createAccount(@ApiParam(value = "User data containing email and passwords", required = true) @Valid @RequestBody RegistrationData body);
+	ResponseEntity<Void> createAccount(@ApiParam(value = "User data containing email and passwords", required = true) @Valid @RequestBody RegistrationDTO body);
 
 }

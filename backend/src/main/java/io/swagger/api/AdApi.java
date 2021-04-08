@@ -6,8 +6,8 @@
 package io.swagger.api;
 
 import io.swagger.annotations.*;
+import io.swagger.entities.Place;
 import io.swagger.model.AdvertisementCreationData;
-import io.swagger.model.Place;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;

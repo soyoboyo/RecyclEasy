@@ -1,9 +1,13 @@
-package io.swagger.model;
+package io.swagger.entities;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModelProperty;
 import org.springframework.validation.annotation.Validated;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.validation.Valid;
 import java.math.BigDecimal;
 import java.util.Objects;
@@ -14,24 +18,26 @@ import java.util.Objects;
 @Validated
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2021-04-05T23:15:12.065+02:00")
 
-
+@Entity
 public class Place {
 	@JsonProperty("id")
-	private BigDecimal id = null;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
 	@JsonProperty("name")
-	private String name = null;
+	private String name;
 
 	@JsonProperty("address")
-	private String address = null;
+	private String address;
 
 	@JsonProperty("locationX")
-	private BigDecimal locationX = null;
+	private BigDecimal locationX;
 
 	@JsonProperty("locationY")
-	private BigDecimal locationY = null;
+	private BigDecimal locationY;
 
-	public Place id(BigDecimal id) {
+	public Place id(Long id) {
 		this.id = id;
 		return this;
 	}
@@ -45,11 +51,11 @@ public class Place {
 
 	@Valid
 
-	public BigDecimal getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(BigDecimal id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

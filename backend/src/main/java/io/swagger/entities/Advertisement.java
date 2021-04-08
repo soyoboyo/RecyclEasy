@@ -1,11 +1,14 @@
-package io.swagger.model;
+package io.swagger.entities;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModelProperty;
 import org.springframework.validation.annotation.Validated;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.validation.Valid;
-import java.math.BigDecimal;
 import java.util.Objects;
 
 /**
@@ -14,10 +17,12 @@ import java.util.Objects;
 @Validated
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2021-04-05T23:15:12.065+02:00")
 
-
-public class AdvertisementData {
+@Entity
+public class Advertisement {
 	@JsonProperty("id")
-	private BigDecimal id = null;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id = null;
 
 	@JsonProperty("title")
 	private String title = null;
@@ -34,7 +39,7 @@ public class AdvertisementData {
 	@JsonProperty("phone")
 	private String phone = null;
 
-	public AdvertisementData id(BigDecimal id) {
+	public Advertisement id(Long id) {
 		this.id = id;
 		return this;
 	}
@@ -48,15 +53,15 @@ public class AdvertisementData {
 
 	@Valid
 
-	public BigDecimal getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(BigDecimal id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
-	public AdvertisementData title(String title) {
+	public Advertisement title(String title) {
 		this.title = title;
 		return this;
 	}
@@ -77,7 +82,7 @@ public class AdvertisementData {
 		this.title = title;
 	}
 
-	public AdvertisementData description(String description) {
+	public Advertisement description(String description) {
 		this.description = description;
 		return this;
 	}
@@ -98,7 +103,7 @@ public class AdvertisementData {
 		this.description = description;
 	}
 
-	public AdvertisementData offerType(String offerType) {
+	public Advertisement offerType(String offerType) {
 		this.offerType = offerType;
 		return this;
 	}
@@ -119,7 +124,7 @@ public class AdvertisementData {
 		this.offerType = offerType;
 	}
 
-	public AdvertisementData email(String email) {
+	public Advertisement email(String email) {
 		this.email = email;
 		return this;
 	}
@@ -140,7 +145,7 @@ public class AdvertisementData {
 		this.email = email;
 	}
 
-	public AdvertisementData phone(String phone) {
+	public Advertisement phone(String phone) {
 		this.phone = phone;
 		return this;
 	}
@@ -170,7 +175,7 @@ public class AdvertisementData {
 		if (o == null || getClass() != o.getClass()) {
 			return false;
 		}
-		AdvertisementData advertisementData = (AdvertisementData) o;
+		Advertisement advertisementData = (Advertisement) o;
 		return Objects.equals(this.id, advertisementData.id) &&
 				Objects.equals(this.title, advertisementData.title) &&
 				Objects.equals(this.description, advertisementData.description) &&

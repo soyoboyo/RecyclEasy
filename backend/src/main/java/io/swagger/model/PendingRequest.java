@@ -1,7 +1,9 @@
 package io.swagger.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.swagger.DTOs.PlaceCreationDTO;
 import io.swagger.annotations.ApiModelProperty;
+import io.swagger.entities.Advertisement;
 import org.springframework.validation.annotation.Validated;
 
 import javax.validation.Valid;
@@ -16,23 +18,23 @@ import java.util.Objects;
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2021-04-05T23:15:12.065+02:00")
 
 
-public class PendingData {
+public class PendingRequest {
 	@JsonProperty("pendingSuggestions")
 	@Valid
-	private List<PlaceCreationData> pendingSuggestions = null;
+	private List<PlaceCreationDTO> pendingSuggestions = null;
 
 	@JsonProperty("pendingAdvertisements")
 	@Valid
-	private List<AdvertisementData> pendingAdvertisements = null;
+	private List<Advertisement> pendingAdvertisements = null;
 
-	public PendingData pendingSuggestions(List<PlaceCreationData> pendingSuggestions) {
+	public PendingRequest pendingSuggestions(List<PlaceCreationDTO> pendingSuggestions) {
 		this.pendingSuggestions = pendingSuggestions;
 		return this;
 	}
 
-	public PendingData addPendingSuggestionsItem(PlaceCreationData pendingSuggestionsItem) {
+	public PendingRequest addPendingSuggestionsItem(PlaceCreationDTO pendingSuggestionsItem) {
 		if (this.pendingSuggestions == null) {
-			this.pendingSuggestions = new ArrayList<PlaceCreationData>();
+			this.pendingSuggestions = new ArrayList<PlaceCreationDTO>();
 		}
 		this.pendingSuggestions.add(pendingSuggestionsItem);
 		return this;
@@ -47,22 +49,22 @@ public class PendingData {
 
 	@Valid
 
-	public List<PlaceCreationData> getPendingSuggestions() {
+	public List<PlaceCreationDTO> getPendingSuggestions() {
 		return pendingSuggestions;
 	}
 
-	public void setPendingSuggestions(List<PlaceCreationData> pendingSuggestions) {
+	public void setPendingSuggestions(List<PlaceCreationDTO> pendingSuggestions) {
 		this.pendingSuggestions = pendingSuggestions;
 	}
 
-	public PendingData pendingAdvertisements(List<AdvertisementData> pendingAdvertisements) {
+	public PendingRequest pendingAdvertisements(List<Advertisement> pendingAdvertisements) {
 		this.pendingAdvertisements = pendingAdvertisements;
 		return this;
 	}
 
-	public PendingData addPendingAdvertisementsItem(AdvertisementData pendingAdvertisementsItem) {
+	public PendingRequest addPendingAdvertisementsItem(Advertisement pendingAdvertisementsItem) {
 		if (this.pendingAdvertisements == null) {
-			this.pendingAdvertisements = new ArrayList<AdvertisementData>();
+			this.pendingAdvertisements = new ArrayList<Advertisement>();
 		}
 		this.pendingAdvertisements.add(pendingAdvertisementsItem);
 		return this;
@@ -77,11 +79,11 @@ public class PendingData {
 
 	@Valid
 
-	public List<AdvertisementData> getPendingAdvertisements() {
+	public List<Advertisement> getPendingAdvertisements() {
 		return pendingAdvertisements;
 	}
 
-	public void setPendingAdvertisements(List<AdvertisementData> pendingAdvertisements) {
+	public void setPendingAdvertisements(List<Advertisement> pendingAdvertisements) {
 		this.pendingAdvertisements = pendingAdvertisements;
 	}
 
@@ -94,7 +96,7 @@ public class PendingData {
 		if (o == null || getClass() != o.getClass()) {
 			return false;
 		}
-		PendingData pendingData = (PendingData) o;
+		PendingRequest pendingData = (PendingRequest) o;
 		return Objects.equals(this.pendingSuggestions, pendingData.pendingSuggestions) &&
 				Objects.equals(this.pendingAdvertisements, pendingData.pendingAdvertisements);
 	}

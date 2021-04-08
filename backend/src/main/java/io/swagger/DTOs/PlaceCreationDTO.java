@@ -1,4 +1,4 @@
-package io.swagger.model;
+package io.swagger.DTOs;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModelProperty;
@@ -11,13 +11,13 @@ import java.util.List;
 import java.util.Objects;
 
 /**
- * PlaceUpdateData
+ * PlaceCreationData
  */
 @Validated
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2021-04-05T23:15:12.065+02:00")
 
 
-public class PlaceUpdateData {
+public class PlaceCreationDTO {
 	@JsonProperty("name")
 	private String name = null;
 
@@ -43,7 +43,7 @@ public class PlaceUpdateData {
 	@Valid
 	private List<String> garbageTypes = null;
 
-	public PlaceUpdateData name(String name) {
+	public PlaceCreationDTO name(String name) {
 		this.name = name;
 		return this;
 	}
@@ -65,7 +65,7 @@ public class PlaceUpdateData {
 		this.name = name;
 	}
 
-	public PlaceUpdateData address(String address) {
+	public PlaceCreationDTO address(String address) {
 		this.address = address;
 		return this;
 	}
@@ -87,7 +87,7 @@ public class PlaceUpdateData {
 		this.address = address;
 	}
 
-	public PlaceUpdateData locationX(String locationX) {
+	public PlaceCreationDTO locationX(String locationX) {
 		this.locationX = locationX;
 		return this;
 	}
@@ -109,7 +109,7 @@ public class PlaceUpdateData {
 		this.locationX = locationX;
 	}
 
-	public PlaceUpdateData locationY(String locationY) {
+	public PlaceCreationDTO locationY(String locationY) {
 		this.locationY = locationY;
 		return this;
 	}
@@ -131,7 +131,7 @@ public class PlaceUpdateData {
 		this.locationY = locationY;
 	}
 
-	public PlaceUpdateData phone(String phone) {
+	public PlaceCreationDTO phone(String phone) {
 		this.phone = phone;
 		return this;
 	}
@@ -153,7 +153,7 @@ public class PlaceUpdateData {
 		this.phone = phone;
 	}
 
-	public PlaceUpdateData opensAt(String opensAt) {
+	public PlaceCreationDTO opensAt(String opensAt) {
 		this.opensAt = opensAt;
 		return this;
 	}
@@ -174,7 +174,7 @@ public class PlaceUpdateData {
 		this.opensAt = opensAt;
 	}
 
-	public PlaceUpdateData closesAt(String closesAt) {
+	public PlaceCreationDTO closesAt(String closesAt) {
 		this.closesAt = closesAt;
 		return this;
 	}
@@ -195,12 +195,12 @@ public class PlaceUpdateData {
 		this.closesAt = closesAt;
 	}
 
-	public PlaceUpdateData garbageTypes(List<String> garbageTypes) {
+	public PlaceCreationDTO garbageTypes(List<String> garbageTypes) {
 		this.garbageTypes = garbageTypes;
 		return this;
 	}
 
-	public PlaceUpdateData addGarbageTypesItem(String garbageTypesItem) {
+	public PlaceCreationDTO addGarbageTypesItem(String garbageTypesItem) {
 		if (this.garbageTypes == null) {
 			this.garbageTypes = new ArrayList<String>();
 		}
@@ -233,15 +233,15 @@ public class PlaceUpdateData {
 		if (o == null || getClass() != o.getClass()) {
 			return false;
 		}
-		PlaceUpdateData placeUpdateData = (PlaceUpdateData) o;
-		return Objects.equals(this.name, placeUpdateData.name) &&
-				Objects.equals(this.address, placeUpdateData.address) &&
-				Objects.equals(this.locationX, placeUpdateData.locationX) &&
-				Objects.equals(this.locationY, placeUpdateData.locationY) &&
-				Objects.equals(this.phone, placeUpdateData.phone) &&
-				Objects.equals(this.opensAt, placeUpdateData.opensAt) &&
-				Objects.equals(this.closesAt, placeUpdateData.closesAt) &&
-				Objects.equals(this.garbageTypes, placeUpdateData.garbageTypes);
+		PlaceCreationDTO placeCreationData = (PlaceCreationDTO) o;
+		return Objects.equals(this.name, placeCreationData.name) &&
+				Objects.equals(this.address, placeCreationData.address) &&
+				Objects.equals(this.locationX, placeCreationData.locationX) &&
+				Objects.equals(this.locationY, placeCreationData.locationY) &&
+				Objects.equals(this.phone, placeCreationData.phone) &&
+				Objects.equals(this.opensAt, placeCreationData.opensAt) &&
+				Objects.equals(this.closesAt, placeCreationData.closesAt) &&
+				Objects.equals(this.garbageTypes, placeCreationData.garbageTypes);
 	}
 
 	@Override
@@ -252,7 +252,7 @@ public class PlaceUpdateData {
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
-		sb.append("class PlaceUpdateData {\n");
+		sb.append("class PlaceCreationData {\n");
 
 		sb.append("    name: ").append(toIndentedString(name)).append("\n");
 		sb.append("    address: ").append(toIndentedString(address)).append("\n");

@@ -2,8 +2,8 @@ package io.swagger.api;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.swagger.annotations.ApiParam;
+import io.swagger.entities.Place;
 import io.swagger.model.AdvertisementCreationData;
-import io.swagger.model.Place;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
