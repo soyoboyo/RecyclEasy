@@ -3,53 +3,24 @@
 	   (click)="setActiveTab('/')"
 	   [class.mat-raised-button]="activeTab === '/'"
 	   [ngClass]="{'active-tab': activeTab === '/'}">
-		<mat-icon class="logo">home</mat-icon>
+		<img src="assets/leaf_icon.png" width="32">
 		<span class="logo label v-align-middle">RecyclEasy</span>
 	</a>
 	<a mat-button [routerLink]="'/advertisements'" class="menu-btn"
 	   (click)="setActiveTab('/advertisements')"
 	   [class.mat-raised-button]="activeTab === '/advertisements'"
 	   [ngClass]="{'active-tab': activeTab === '/advertisements'}">
-		<mat-icon>engineering</mat-icon>
+		<mat-icon>featured_video</mat-icon>
 		<span class="label v-align-middle">Advertisements</span>
 	</a>
-	<a mat-button [routerLink]="'/quiz'" class="menu-btn"
-	   (click)="setActiveTab('/quiz')"
-	   [class.mat-raised-button]="activeTab === '/quiz'"
-	   [ngClass]="{'active-tab': activeTab === '/quiz'}">
-		<mat-icon>help</mat-icon>
+	<a mat-button [routerLink]="'/pending'" class="menu-btn"
+	   (click)="setActiveTab('/pending')"
+	   [class.mat-raised-button]="activeTab === '/pending'"
+	   [ngClass]="{'active-tab': activeTab === '/pending'}">
+		<mat-icon>pending_actions</mat-icon>
 		<span class="label v-align-middle">A/pending</span>
 	</a>
-	<a mat-button [routerLink]="'/opentasks'" class="menu-btn"
-	   (click)="setActiveTab('/opentasks')"
-	   [class.mat-raised-button]="activeTab === '/opentasks'"
-	   [ngClass]="{'active-tab': activeTab === '/opentasks'}">
-		<mat-icon>psychology</mat-icon>
-		<span class="label v-align-middle">Open tasks</span>
-	</a>
-	<a mat-button [routerLink]="'/codesnippets'" class="menu-btn"
-	   (click)="setActiveTab('/codesnippets')"
-	   [class.mat-raised-button]="activeTab === '/codesnippets'"
-	   [ngClass]="{'active-tab': activeTab === '/codesnippets'}"
-	>
-		<mat-icon>code</mat-icon>
-		<span class="label v-align-middle ">Code snippets</span>
-	</a>
 
-	<a mat-button [routerLink]="'/behavioral'" class="menu-btn"
-	   (click)="setActiveTab('/behavioral')"
-	   [class.mat-raised-button]="activeTab === '/behavioral'"
-	   [ngClass]="{'active-tab': activeTab === '/behavioral'}">
-		<mat-icon>people</mat-icon>
-		<span class="label v-align-middle">Behavioral</span>
-	</a>
-	<a mat-button [routerLink]="'/reverse'" class="menu-btn"
-	   (click)="setActiveTab('/reverse')"
-	   [class.mat-raised-button]="activeTab === '/reverse'"
-	   [ngClass]="{'active-tab': activeTab === '/reverse'}">
-		<mat-icon>swap_horiz</mat-icon>
-		<span class="label v-align-middle">Reverse</span>
-	</a>
 
 	<span class="toolbar-middle-spacer"></span>
 
@@ -59,35 +30,25 @@
 		<mat-icon>more_vert</mat-icon>
 	</button>
 	<mat-menu #menuOptions="matMenu">
-		<button mat-menu-item>
+		<button mat-menu-item [routerLink]="'/user'">
 			<mat-icon>account_circle</mat-icon>
-			<span>Account</span>
+			<span>User panel</span>
 		</button>
 
-		<button mat-menu-item [matMenuTriggerFor]="themes">
-			<mat-icon>palette</mat-icon>
-			<span>Theme</span>
-		</button>
-
-		<button mat-menu-item>
-			<mat-icon>find_in_page</mat-icon>
-			<span>Resources</span>
-		</button>
 
 		<button mat-menu-item>
 			<span>---</span>
 		</button>
 
-		<button mat-menu-item>
+		<button mat-menu-item [routerLink]="'/register'">
 			<mat-icon>how_to_reg</mat-icon>
 			<span>Register</span>
 		</button>
 
-		<button mat-menu-item>
+		<button mat-menu-item [routerLink]="'/login'">
 			<mat-icon>login</mat-icon>
 			<span>Login</span>
 		</button>
-
 
 		<button mat-menu-item>
 			<mat-icon>exit_to_app</mat-icon>

@@ -2,13 +2,10 @@
 
 
 	<h1 style="text-align: center;">
-		Select a city
+		Find recycling point near you
 	</h1>
 
-	<mat-form-field style="width: 500px;">
-		<mat-label>Select city</mat-label>
-		<input matInput placeholder="Select city" value="Wrocław">
-	</mat-form-field>
+
 </div>
 
 <mat-sidenav-container class="example-container">
@@ -18,6 +15,10 @@
 
 
 		<section style="margin-left: 20px;">
+			<mat-form-field style="width: 90%;">
+				<mat-label>Select city</mat-label>
+				<input matInput placeholder="Select city" value="Wrocław">
+			</mat-form-field>
 			Select category:
 			<p *ngFor="let type of wasteCategories">
 
