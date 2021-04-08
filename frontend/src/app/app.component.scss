@@ -1,0 +1,22 @@
+#places_map {
+  height: 400px;
+  width: 70%;
+}
+
+.content {
+  width: 70%;
+  padding: 10px;
+  margin: 0 auto;
+}
+
+.content-wrapper {
+  flex: 1 1 auto;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  min-height: 100%;
+  background: #000428;
+  background: -webkit-linear-gradient(to top, #004e92, #000428);
+  background: linear-gradient(to top, #004e92, #000428);
+}
+

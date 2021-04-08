@@ -1,0 +1,33 @@
+.toolbar-middle-spacer {
+  flex: 1 1 auto;
+}
+
+mat-toolbar {
+  background: rgba(53, 195, 30, 0.88);;
+
+}
+
+.logo {
+  color: black;
+  font-size: 20px;
+}
+
+@media(max-width: 1000px) {
+  .menu-btn .label {
+	display: none;
+  }
+}
+
+.mat-button .mat-icon {
+  vertical-align: middle;
+}
+
+.toolbar-styling {
+  height: 64px;
+}
+
+
+.active-tab {
+  background: transparent;
+  border: 1px solid white;
+}

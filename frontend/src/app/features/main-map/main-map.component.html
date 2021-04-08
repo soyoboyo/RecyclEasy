@@ -1,0 +1,38 @@
+<div style="text-align: center;">
+
+
+	<h1 style="text-align: center;">
+		Select a city
+	</h1>
+
+	<mat-form-field style="width: 500px;">
+		<mat-label>Select city</mat-label>
+		<input matInput placeholder="Select city" value="Wrocław">
+	</mat-form-field>
+</div>
+
+<mat-sidenav-container class="example-container">
+
+
+	<mat-sidenav mode="side" opened style="width: 200px;">
+
+
+		<section style="margin-left: 20px;">
+			Select category:
+			<p *ngFor="let type of wasteCategories">
+
+				<mat-checkbox>
+					{{type}}
+				</mat-checkbox>
+			</p>
+		</section>
+
+	</mat-sidenav>
+	<mat-sidenav-content>
+
+
+		<div class="row">
+			<div id="places_map"></div>
+		</div>
+	</mat-sidenav-content>
+</mat-sidenav-container>
