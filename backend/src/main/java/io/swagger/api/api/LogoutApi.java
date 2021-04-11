@@ -3,7 +3,7 @@
  * https://github.com/swagger-api/swagger-codegen
  * Do not edit the class manually.
  */
-package io.swagger.api;
+package io.swagger.api.api;
 
 import io.swagger.annotations.*;
 import org.springframework.http.ResponseEntity;
@@ -15,23 +15,23 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2021-04-05T23:15:12.065+02:00")
 
 @Validated
-@Api(value = "deleteAccount", description = "the deleteAccount API")
+@Api(value = "logout", description = "the logout API")
 @RequestMapping(value = "")
-public interface DeleteAccountApi {
+public interface LogoutApi {
 
-	@ApiOperation(value = "Remove user account", nickname = "removeUserAccount", notes = "", authorizations = {
+	@ApiOperation(value = "Logging out from the system", nickname = "signOut", notes = "", authorizations = {
 			@Authorization(value = "recycleasy_auth", scopes = {
 					@AuthorizationScope(scope = "read", description = "read data"),
 					@AuthorizationScope(scope = "write", description = "modify data")
 			})
 	}, tags = {"auth",})
 	@ApiResponses(value = {
-			@ApiResponse(code = 200, message = "User account has been removed"),
+			@ApiResponse(code = 200, message = "User correctly logged out"),
 			@ApiResponse(code = 403, message = "Only admin has access to this operation.")})
-	@RequestMapping(value = "/deleteAccount",
+	@RequestMapping(value = "/logout",
 			produces = {"application/json"},
 			consumes = {"application/json"},
-			method = RequestMethod.DELETE)
-	ResponseEntity<Void> removeUserAccount(@ApiParam(value = "Authorization header", required = true) @RequestHeader(value = "Authorization", required = true) String authorization);
+			method = RequestMethod.POST)
+	ResponseEntity<Void> signOut(@ApiParam(value = "Authorization header", required = true) @RequestHeader(value = "Authorization", required = true) String authorization);
 
 }

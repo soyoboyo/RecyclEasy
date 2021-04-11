@@ -1,9 +1,10 @@
-package io.swagger.api;
+package io.swagger.api.controllers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.swagger.DTOs.PlaceCreationDTO;
 import io.swagger.DTOs.PlaceUpdateDTO;
 import io.swagger.annotations.ApiParam;
+import io.swagger.api.api.PlaceApi;
 import io.swagger.entities.Place;
 import io.swagger.model.PlaceDetails;
 import io.swagger.model.PlaceFilterData;

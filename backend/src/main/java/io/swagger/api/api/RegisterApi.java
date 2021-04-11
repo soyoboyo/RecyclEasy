@@ -3,10 +3,10 @@
  * https://github.com/swagger-api/swagger-codegen
  * Do not edit the class manually.
  */
-package io.swagger.api;
+package io.swagger.api.api;
 
+import io.swagger.DTOs.RegistrationDTO;
 import io.swagger.annotations.*;
-import io.swagger.model.LoginData;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -18,19 +18,18 @@ import javax.validation.Valid;
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2021-04-05T23:15:12.065+02:00")
 
 @Validated
-@Api(value = "login", description = "the login API")
+@Api(value = "register", description = "the register API")
 @RequestMapping(value = "")
-public interface LoginApi {
+public interface RegisterApi {
 
-	@ApiOperation(value = "Loggin in to the system", nickname = "signIn", notes = "", tags = {"auth",})
+	@ApiOperation(value = "Create an account", nickname = "createAccount", notes = "", tags = {"auth",})
 	@ApiResponses(value = {
-			@ApiResponse(code = 200, message = "User logged in correctly"),
-			@ApiResponse(code = 400, message = "Wrong password or email"),
-			@ApiResponse(code = 403, message = "Only admin has access to this operation.")})
-	@RequestMapping(value = "/login",
+			@ApiResponse(code = 201, message = "User registered successfully."),
+			@ApiResponse(code = 400, message = "User's passwords do not match. The user's email is used in the application. The password is not strong enough.")})
+	@RequestMapping(value = "/register",
 			produces = {"application/json"},
 			consumes = {"application/json"},
 			method = RequestMethod.POST)
-	ResponseEntity<Void> signIn(@ApiParam(value = "User data containing email and password", required = true) @Valid @RequestBody LoginData body);
+	ResponseEntity<Void> createAccount(@ApiParam(value = "User data containing email and passwords", required = true) @Valid @RequestBody RegistrationDTO body);
 
 }

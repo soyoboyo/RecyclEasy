@@ -37,21 +37,11 @@ export class MainMapComponent implements OnInit {
 				zoom: 12
 			})
 		});
-		this.addPoint(this.latitude, this.longitude);
-	}
 
-	setCenter() {
-		var view = this.map.getView();
-		view.setCenter(ol.proj.fromLonLat([this.longitude, this.latitude]));
-		view.addMarker(ol.proj.fromLonLat([this.longitude, this.latitude]));
-		view.setZoom(12);
-	}
-
-	addPoint(lat: number, lng: number) {
-		let vectorLayer = new ol.layer.Vector({
-			source: new ol.source.Vector({
+		var vectorLayer = new ol.layer.Vector({
+			source:new ol.source.Vector({
 				features: [new ol.Feature({
-					geometry: new ol.geom.Point(ol.proj.transform([lng, lat], 'EPSG:4326', 'EPSG:3857')),
+					geometry: new ol.geom.Point(ol.proj.transform([parseFloat(String(this.longitude)), parseFloat(String(this.latitude))], 'EPSG:4326', 'EPSG:3857')),
 				})]
 			}),
 			style: new ol.style.Style({
@@ -65,5 +55,7 @@ export class MainMapComponent implements OnInit {
 		});
 		this.map.addLayer(vectorLayer);
 	}
+
+
 
 }

@@ -3,35 +3,34 @@
  * https://github.com/swagger-api/swagger-codegen
  * Do not edit the class manually.
  */
-package io.swagger.api;
+package io.swagger.api.api;
 
 import io.swagger.annotations.*;
+import io.swagger.model.LoginData;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.RequestHeader;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import javax.validation.Valid;
 
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2021-04-05T23:15:12.065+02:00")
 
 @Validated
-@Api(value = "logout", description = "the logout API")
+@Api(value = "login", description = "the login API")
 @RequestMapping(value = "")
-public interface LogoutApi {
+public interface LoginApi {
 
-	@ApiOperation(value = "Logging out from the system", nickname = "signOut", notes = "", authorizations = {
-			@Authorization(value = "recycleasy_auth", scopes = {
-					@AuthorizationScope(scope = "read", description = "read data"),
-					@AuthorizationScope(scope = "write", description = "modify data")
-			})
-	}, tags = {"auth",})
+	@ApiOperation(value = "Loggin in to the system", nickname = "signIn", notes = "", tags = {"auth",})
 	@ApiResponses(value = {
-			@ApiResponse(code = 200, message = "User correctly logged out"),
+			@ApiResponse(code = 200, message = "User logged in correctly"),
+			@ApiResponse(code = 400, message = "Wrong password or email"),
 			@ApiResponse(code = 403, message = "Only admin has access to this operation.")})
-	@RequestMapping(value = "/logout",
+	@RequestMapping(value = "/login",
 			produces = {"application/json"},
 			consumes = {"application/json"},
 			method = RequestMethod.POST)
-	ResponseEntity<Void> signOut(@ApiParam(value = "Authorization header", required = true) @RequestHeader(value = "Authorization", required = true) String authorization);
+	ResponseEntity<Void> signIn(@ApiParam(value = "User data containing email and password", required = true) @Valid @RequestBody LoginData body);
 
 }

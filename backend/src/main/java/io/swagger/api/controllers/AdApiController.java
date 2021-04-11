@@ -1,7 +1,8 @@
-package io.swagger.api;
+package io.swagger.api.controllers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.swagger.annotations.ApiParam;
+import io.swagger.api.api.AdApi;
 import io.swagger.entities.Place;
 import io.swagger.model.AdvertisementCreationData;
 import org.slf4j.Logger;

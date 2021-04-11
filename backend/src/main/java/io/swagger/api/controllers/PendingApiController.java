@@ -1,7 +1,8 @@
-package io.swagger.api;
+package io.swagger.api.controllers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.swagger.annotations.ApiParam;
+import io.swagger.api.api.PendingApi;
 import io.swagger.entities.Place;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
