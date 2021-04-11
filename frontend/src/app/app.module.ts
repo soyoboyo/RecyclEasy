@@ -13,6 +13,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatIconModule } from '@angular/material/icon';
 import { MaterialModule } from './material.module';
 import { AdvertisementsComponent } from './features/advertisements/advertisements.component';
+import { AdFormComponent } from './features/advertisements/ad-form/ad-form.component';
 
 @NgModule({
 	declarations: [
@@ -23,7 +24,8 @@ import { AdvertisementsComponent } from './features/advertisements/advertisement
 		MainMapComponent,
 		UserPanelComponent,
 		TopBarComponent,
-		AdvertisementsComponent
+		AdvertisementsComponent,
+		AdFormComponent
 	],
 	imports: [
 		BrowserModule,

@@ -6,6 +6,7 @@ import { LoginComponent } from './features/login/login.component';
 import { RegisterComponent } from './features/register/register.component';
 import { PendingRequestsComponent } from './features/pending-requests/pending-requests.component';
 import { UserPanelComponent } from './features/user-panel/user-panel.component';
+import { AdFormComponent } from './features/advertisements/ad-form/ad-form.component';
 
 const routes: Routes = [
 	{ path: '', component: MainMapComponent, pathMatch: 'full' },
@@ -14,6 +15,7 @@ const routes: Routes = [
 	{ path: 'register', component: RegisterComponent, pathMatch: 'full' },
 	{ path: 'pending', component: PendingRequestsComponent, pathMatch: 'full' },
 	{ path: 'user', component: UserPanelComponent, pathMatch: 'full' },
+	{ path: 'new-ad', component: AdFormComponent, pathMatch: 'full' },
 
 ];
 
