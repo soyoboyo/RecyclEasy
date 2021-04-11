@@ -1,7 +1,7 @@
 package io.swagger.repositories;
 
-import io.swagger.entities.Place;
+import io.swagger.entities.Advertisement;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface AdvertisementRepository extends JpaRepository<Place, Long> {
+public interface AdvertisementRepository extends JpaRepository<Advertisement, Long> {
 }
