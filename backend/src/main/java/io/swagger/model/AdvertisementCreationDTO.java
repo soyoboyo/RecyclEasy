@@ -14,7 +14,7 @@ import java.util.Objects;
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2021-04-05T23:15:12.065+02:00")
 
 
-public class AdvertisementCreationData {
+public class AdvertisementCreationDTO {
 	@JsonProperty("title")
 	private String title = null;
 
@@ -30,7 +30,7 @@ public class AdvertisementCreationData {
 	@JsonProperty("phone")
 	private String phone = null;
 
-	public AdvertisementCreationData title(String title) {
+	public AdvertisementCreationDTO title(String title) {
 		this.title = title;
 		return this;
 	}
@@ -52,7 +52,7 @@ public class AdvertisementCreationData {
 		this.title = title;
 	}
 
-	public AdvertisementCreationData description(String description) {
+	public AdvertisementCreationDTO description(String description) {
 		this.description = description;
 		return this;
 	}
@@ -74,7 +74,7 @@ public class AdvertisementCreationData {
 		this.description = description;
 	}
 
-	public AdvertisementCreationData offerType(String offerType) {
+	public AdvertisementCreationDTO offerType(String offerType) {
 		this.offerType = offerType;
 		return this;
 	}
@@ -96,7 +96,7 @@ public class AdvertisementCreationData {
 		this.offerType = offerType;
 	}
 
-	public AdvertisementCreationData email(String email) {
+	public AdvertisementCreationDTO email(String email) {
 		this.email = email;
 		return this;
 	}
@@ -118,7 +118,7 @@ public class AdvertisementCreationData {
 		this.email = email;
 	}
 
-	public AdvertisementCreationData phone(String phone) {
+	public AdvertisementCreationDTO phone(String phone) {
 		this.phone = phone;
 		return this;
 	}
@@ -149,7 +149,7 @@ public class AdvertisementCreationData {
 		if (o == null || getClass() != o.getClass()) {
 			return false;
 		}
-		AdvertisementCreationData advertisementCreationData = (AdvertisementCreationData) o;
+		AdvertisementCreationDTO advertisementCreationData = (AdvertisementCreationDTO) o;
 		return Objects.equals(this.title, advertisementCreationData.title) &&
 				Objects.equals(this.description, advertisementCreationData.description) &&
 				Objects.equals(this.offerType, advertisementCreationData.offerType) &&

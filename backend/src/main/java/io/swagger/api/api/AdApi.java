@@ -6,8 +6,8 @@
 package io.swagger.api.api;
 
 import io.swagger.annotations.*;
-import io.swagger.entities.Place;
-import io.swagger.model.AdvertisementCreationData;
+import io.swagger.entities.Advertisement;
+import io.swagger.model.AdvertisementCreationDTO;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -36,17 +36,17 @@ public interface AdApi {
 			produces = {"application/json"},
 			consumes = {"application/json", "application/x-www-form-urlencoded"},
 			method = RequestMethod.POST)
-	ResponseEntity<Void> advertisementCreate(@ApiParam(value = "Authorization header", required = true) @RequestHeader(value = "Authorization", required = true) String authorization, @ApiParam(value = "Advertisement creation body", required = true) @Valid @RequestBody AdvertisementCreationData body);
+	ResponseEntity<Void> advertisementCreate(@ApiParam(value = "Authorization header", required = true) @RequestHeader(value = "Authorization", required = true) String authorization, @ApiParam(value = "Advertisement creation body", required = true) @Valid @RequestBody AdvertisementCreationDTO body);
 
 
-	@ApiOperation(value = "Shows all published advertisements", nickname = "allAdvertisements", notes = "", response = Place.class, responseContainer = "List", tags = {"advertisement",})
+	@ApiOperation(value = "Shows all published advertisements", nickname = "allAdvertisements", notes = "", response = Advertisement.class, responseContainer = "List", tags = {"advertisement",})
 	@ApiResponses(value = {
-			@ApiResponse(code = 200, message = "All published advertisements", response = Place.class, responseContainer = "List")})
+			@ApiResponse(code = 200, message = "All published advertisements", response = Advertisement.class, responseContainer = "List")})
 	@RequestMapping(value = "/ad/getAll",
 			produces = {"application/json"},
 			consumes = {"application/json"},
 			method = RequestMethod.GET)
-	ResponseEntity<List<Place>> allAdvertisements();
+	ResponseEntity<List<Advertisement>> allAdvertisements();
 
 
 	@ApiOperation(value = "Approve advertisement with given ID.", nickname = "approveAd", notes = "", authorizations = {

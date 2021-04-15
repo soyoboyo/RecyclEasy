@@ -2,6 +2,9 @@ package io.swagger.entities;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.RequiredArgsConstructor;
 import org.springframework.validation.annotation.Validated;
 
 import javax.persistence.Entity;
@@ -18,6 +21,9 @@ import java.util.Objects;
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2021-04-05T23:15:12.065+02:00")
 
 @Entity
+@Data
+@AllArgsConstructor
+@RequiredArgsConstructor
 public class Advertisement {
 	@JsonProperty("id")
 	@Id
