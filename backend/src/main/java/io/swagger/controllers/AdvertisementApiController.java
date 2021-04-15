@@ -1,4 +1,4 @@
-package io.swagger.api.controllers;
+package io.swagger.controllers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.swagger.DTOs.AdvertisementCreationDTO;
@@ -26,10 +26,10 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-public class AdApiController implements AdApi {
+public class AdvertisementApiController implements AdApi {
 
 	private final AdvertisementService advertisementService;
-	private static final Logger log = LoggerFactory.getLogger(AdApiController.class);
+	private static final Logger log = LoggerFactory.getLogger(AdvertisementApiController.class);
 
 	private final ObjectMapper objectMapper;
 
@@ -85,5 +85,12 @@ public class AdApiController implements AdApi {
 		Advertisement ad = advertisementService.createAdvertisement(adDTO);
 		return ResponseEntity.ok(ad);
 	}
+
+	@GetMapping(value = "/ad/getAll", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<Advertisement>> createAdvertisement() {
+		List<Advertisement> ads = advertisementService.getAllAdvertisements();
+		return ResponseEntity.ok(ads);
+	}
+
 
 }

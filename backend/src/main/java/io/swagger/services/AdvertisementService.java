@@ -6,6 +6,8 @@ import io.swagger.repositories.AdvertisementRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class AdvertisementService {
@@ -22,8 +24,8 @@ public class AdvertisementService {
 		return advertisementRepository.save(ad);
 	}
 
-//	public List<Advertisement> getAllAdvertisements() {
-//		return advertisementRepository.findAll();
-//	}
+	public List<Advertisement> getAllAdvertisements() {
+		return advertisementRepository.findAll();
+	}
 
 }

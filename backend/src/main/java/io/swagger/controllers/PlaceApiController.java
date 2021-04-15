@@ -1,4 +1,4 @@
-package io.swagger.api.controllers;
+package io.swagger.controllers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.swagger.annotations.ApiParam;
