@@ -1,4 +1,4 @@
-package io.swagger.controllers;
+package io.swagger.api.controllers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.swagger.DTOs.AdvertisementCreationDTO;
@@ -80,7 +80,7 @@ public class AdvertisementApiController implements AdApi {
 		return new ResponseEntity<Void>(HttpStatus.NOT_IMPLEMENTED);
 	}
 
-	@PostMapping(value = "/create/ad", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@PostMapping(value = "/ad/create", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Advertisement> createAdvertisement(@RequestBody AdvertisementCreationDTO adDTO) {
 		Advertisement ad = advertisementService.createAdvertisement(adDTO);
 		return ResponseEntity.ok(ad);
