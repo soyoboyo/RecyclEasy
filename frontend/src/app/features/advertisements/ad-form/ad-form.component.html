@@ -1,35 +1,43 @@
-<div class="container">
-	<mat-card class="vertical-center">
+<div class="container mat-elevation-z20">
+	<mat-card class="vertical-center  mat-elevation-z10">
 		<h1>Publish advertisement</h1>
 
-		<form class="user-form">
+		<form [formGroup]="advertForm" class="user-form">
 
-			<mat-radio-group aria-label="Advertisement type">
-				<mat-radio-button value="1">Offer</mat-radio-button>
-				<mat-radio-button value="2">Request</mat-radio-button>
+			<mat-radio-group aria-label="Advertisement type" formControlName="type">
+				<mat-radio-button style="margin-right: 10px;" value="offer">Offer</mat-radio-button>
+				<mat-radio-button value="request">Request</mat-radio-button>
 			</mat-radio-group>
 
 
 			<mat-form-field class="user-form-field">
 				<mat-label>Title</mat-label>
-				<input matInput value="" placeholder="Title">
+				<input formControlName="title"
+					   matInput
+					   placeholder="Title">
 			</mat-form-field>
 
 			<mat-form-field class="user-form-field">
 				<mat-label>Description</mat-label>
-				<textarea matInput placeholder="Description"></textarea>
+				<textarea formControlName="description"
+						  matInput
+						  placeholder="Description"></textarea>
 			</mat-form-field>
 
 			<mat-form-field class="user-form-field">
 				<mat-label>Email</mat-label>
-				<input matInput value="" placeholder="Email">
+				<input formControlName="email"
+					   matInput
+					   placeholder="Email">
 			</mat-form-field>
 			<mat-form-field class="user-form-field">
 				<mat-label>Phone</mat-label>
-				<input matInput value="" placeholder="Phone">
+				<input formControlName="phone"
+					   matInput
+					   placeholder="Phone">
 			</mat-form-field>
 
-			<button mat-raised-button color="warn" style="background-color: #35C31E">Publish</button>
+			<button mat-raised-button color="warn" style="background-color: #35C31E" (click)="submit()">Publish</button>
 		</form>
 	</mat-card>
 

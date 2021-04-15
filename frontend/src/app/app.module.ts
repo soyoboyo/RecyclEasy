@@ -14,6 +14,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { MaterialModule } from './material.module';
 import { AdvertisementsComponent } from './features/advertisements/advertisements.component';
 import { AdFormComponent } from './features/advertisements/ad-form/ad-form.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { RestService } from './services/rest/rest.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
 	declarations: [
@@ -32,9 +35,11 @@ import { AdFormComponent } from './features/advertisements/ad-form/ad-form.compo
 		AppRoutingModule,
 		BrowserAnimationsModule,
 		MatIconModule,
-		MaterialModule
+		MaterialModule,
+		ReactiveFormsModule,
+		HttpClientModule
 	],
-	providers: [],
+	providers: [RestService],
 	bootstrap: [AppComponent]
 })
 export class AppModule {
