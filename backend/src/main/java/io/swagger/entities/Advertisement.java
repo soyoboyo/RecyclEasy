@@ -12,7 +12,6 @@ import javax.persistence.Id;
 @Entity
 @Data
 @RequiredArgsConstructor
-//@NoArgsConstructor
 public class Advertisement {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

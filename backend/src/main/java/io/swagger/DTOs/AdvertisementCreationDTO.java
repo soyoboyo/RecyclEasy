@@ -11,8 +11,6 @@ import org.springframework.validation.annotation.Validated;
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2021-04-05T23:15:12.065+02:00")
 
 @Data
-//@NoArgsConstructor
-//@RequiredArgsConstructor
 public class AdvertisementCreationDTO {
 	@JsonProperty("title")
 	private String title = null;

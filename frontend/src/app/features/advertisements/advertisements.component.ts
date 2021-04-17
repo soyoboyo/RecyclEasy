@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { RestService } from '../../services/rest/rest.service';
 
 @Component({
 	selector: 'app-advertisements',
@@ -46,10 +47,18 @@ export class AdvertisementsComponent implements OnInit {
 	];
 
 
-	constructor() {
+	constructor(private http: RestService) {
 	}
 
 	ngOnInit(): void {
+		this.getAds();
+		console.log(this.advertisements);
+	}
+
+	async getAds() {
+		const response = await this.http.getAll('/advertisement/getAll');
+
+		this.advertisements = this.advertisements.concat(response);
 	}
 
 }

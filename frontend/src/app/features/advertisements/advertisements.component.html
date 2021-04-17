@@ -2,8 +2,8 @@
 	<button mat-raised-button color="primary" [routerLink]="'/new-ad'">Add new advertisement</button>
 	<h1>Advertismeents</h1>
 	<div *ngFor="let ad of advertisements" style="background: #EEEEEE; width: 70%; height: 150px; border: 1px solid black; margin: 0 auto; text-align: left;">
-		<p>{{ad.title}}</p>
-		<p>{{ad.about}}</p>
+		<p>{{ad.type}}: {{ad.title}}</p>
+		<p>{{ad.description}}</p>
 		<p>Contact: phone {{ad.phone}}, email {{ad.email}}</p>
 	</div>
 

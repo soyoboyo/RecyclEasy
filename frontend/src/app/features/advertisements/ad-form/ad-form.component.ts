@@ -29,7 +29,7 @@ export class AdFormComponent implements OnInit {
 	submit(): void {
 		console.log(this.advertForm.value);
 		let body = this.advertForm.value;
-		this.http.save('/create/ad', body).subscribe((response) => {
+		this.http.save('/advertisement/create', body).subscribe((response) => {
 			console.log(response);
 		}, (error) => {
 
