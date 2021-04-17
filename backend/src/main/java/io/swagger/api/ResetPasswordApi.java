@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequestMapping(value = "")
 public interface ResetPasswordApi {
 
-	@ApiOperation(value = "Reset password to the system", nickname = "resetPassowrd", notes = "", tags = {"auth",})
+	@ApiOperation(value = "Reset password to the system", nickname = "resetPassowrd", notes = "")
 	@ApiResponses(value = {
 			@ApiResponse(code = 200, message = "Reset link has been sent to user's email."),
 			@ApiResponse(code = 400, message = "User email not found.")})

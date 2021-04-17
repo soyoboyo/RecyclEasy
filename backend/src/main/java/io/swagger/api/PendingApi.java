@@ -26,7 +26,7 @@ public interface PendingApi {
 			@Authorization(value = "recycleasy_auth", scopes = {
 					@AuthorizationScope(scope = "read", description = "read data")
 			})
-	}, tags = {"admin",})
+	})
 	@ApiResponses(value = {
 			@ApiResponse(code = 200, message = "All published advertisements", response = Place.class, responseContainer = "List")})
 	@RequestMapping(value = "/pending/getAll",

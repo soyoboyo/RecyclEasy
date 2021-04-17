@@ -22,7 +22,7 @@ import javax.validation.Valid;
 @RequestMapping(value = "")
 public interface RegisterApi {
 
-	@ApiOperation(value = "Create an account", nickname = "createAccount", notes = "", tags = {"auth",})
+	@ApiOperation(value = "Create an account", nickname = "createAccount", notes = "")
 	@ApiResponses(value = {
 			@ApiResponse(code = 201, message = "User registered successfully."),
 			@ApiResponse(code = 400, message = "User's passwords do not match. The user's email is used in the application. The password is not strong enough.")})

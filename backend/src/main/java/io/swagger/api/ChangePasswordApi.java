@@ -28,7 +28,7 @@ public interface ChangePasswordApi {
 					@AuthorizationScope(scope = "read", description = "read data"),
 					@AuthorizationScope(scope = "write", description = "modify data")
 			})
-	}, tags = {"auth",})
+	})
 	@ApiResponses(value = {
 			@ApiResponse(code = 200, message = "Password has been hanged"),
 			@ApiResponse(code = 400, message = "Password is not strong. Passwords are not the same"),

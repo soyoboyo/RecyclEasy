@@ -24,7 +24,7 @@ public interface LogoutApi {
 					@AuthorizationScope(scope = "read", description = "read data"),
 					@AuthorizationScope(scope = "write", description = "modify data")
 			})
-	}, tags = {"auth",})
+	})
 	@ApiResponses(value = {
 			@ApiResponse(code = 200, message = "User correctly logged out"),
 			@ApiResponse(code = 403, message = "Only admin has access to this operation.")})

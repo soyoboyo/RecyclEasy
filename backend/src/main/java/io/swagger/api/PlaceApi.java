@@ -27,7 +27,7 @@ public interface PlaceApi {
 					@AuthorizationScope(scope = "read", description = "read data"),
 					@AuthorizationScope(scope = "write", description = "modify data")
 			})
-	}, tags = {"admin",})
+	})
 	@ApiResponses(value = {
 			@ApiResponse(code = 200, message = "Place approved successfully."),
 			@ApiResponse(code = 403, message = "Only admin has access to this operation."),
@@ -44,7 +44,7 @@ public interface PlaceApi {
 					@AuthorizationScope(scope = "read", description = "read data"),
 					@AuthorizationScope(scope = "write", description = "modify data")
 			})
-	}, tags = {"place",})
+	})
 	@ApiResponses(value = {
 			@ApiResponse(code = 200, message = "Place has been created successfully."),
 			@ApiResponse(code = 400, message = "Some of the required fields are missing."),
@@ -61,7 +61,7 @@ public interface PlaceApi {
 					@AuthorizationScope(scope = "read", description = "read data"),
 					@AuthorizationScope(scope = "write", description = "modify data")
 			})
-	}, tags = {"place",})
+	})
 	@ApiResponses(value = {
 			@ApiResponse(code = 200, message = "Place has been deleted."),
 			@ApiResponse(code = 403, message = "Only admin has access to this operation.."),
@@ -73,7 +73,7 @@ public interface PlaceApi {
 	ResponseEntity<Void> deletePlace(@ApiParam(value = "Authorization header", required = true) @RequestHeader(value = "Authorization", required = true) String authorization, @ApiParam(value = "ID of place to reove", required = true) @PathVariable("placeId") Long placeId);
 
 
-	@ApiOperation(value = "Get all places", nickname = "getAllPlaces", notes = "", response = Place.class, responseContainer = "List", tags = {"place",})
+	@ApiOperation(value = "Get all places", nickname = "getAllPlaces", notes = "", response = Place.class, responseContainer = "List")
 	@ApiResponses(value = {
 			@ApiResponse(code = 200, message = "List of all places", response = Place.class, responseContainer = "List")})
 	@RequestMapping(value = "/place/getAll",
@@ -83,7 +83,7 @@ public interface PlaceApi {
 	ResponseEntity<List<Place>> getAllPlaces();
 
 
-	@ApiOperation(value = "Get places by specified filters", nickname = "getFilteredPlaces", notes = "", response = Place.class, tags = {"place",})
+	@ApiOperation(value = "Get places by specified filters", nickname = "getFilteredPlaces", notes = "", response = Place.class)
 	@ApiResponses(value = {
 			@ApiResponse(code = 200, message = "Returns objects meeting specified filters.", response = Place.class)})
 	@RequestMapping(value = "/place/filter",
@@ -93,7 +93,7 @@ public interface PlaceApi {
 	ResponseEntity<Place> getFilteredPlaces(@ApiParam(value = "Place update payload", required = true) @Valid @RequestBody PlaceFilterData body);
 
 
-	@ApiOperation(value = "Get place details", nickname = "placeDetails", notes = "", response = PlaceDetails.class, tags = {"place",})
+	@ApiOperation(value = "Get place details", nickname = "placeDetails", notes = "", response = PlaceDetails.class)
 	@ApiResponses(value = {
 			@ApiResponse(code = 200, message = "Details of place with given Id", response = PlaceDetails.class),
 			@ApiResponse(code = 404, message = "Place doesnt exist.")})
@@ -109,7 +109,7 @@ public interface PlaceApi {
 					@AuthorizationScope(scope = "read", description = "read data"),
 					@AuthorizationScope(scope = "write", description = "modify data")
 			})
-	}, tags = {"admin",})
+	})
 	@ApiResponses(value = {
 			@ApiResponse(code = 200, message = "Place rejected successfully."),
 			@ApiResponse(code = 403, message = "Only admin has access to this operation."),
@@ -121,7 +121,7 @@ public interface PlaceApi {
 	ResponseEntity<Void> rejectSuggestion(@ApiParam(value = "Authorization header", required = true) @RequestHeader(value = "Authorization", required = true) String authorization, @ApiParam(value = "ID of place suggestion", required = true) @PathVariable("suggestionId") BigDecimal suggestionId);
 
 
-	@ApiOperation(value = "Suggest new place", nickname = "sendSuggestion", notes = "", tags = {"place",})
+	@ApiOperation(value = "Suggest new place", nickname = "sendSuggestion", notes = "")
 	@ApiResponses(value = {
 			@ApiResponse(code = 200, message = "Suggestion sent successfully.")})
 	@RequestMapping(value = "/place/suggest",
@@ -136,7 +136,7 @@ public interface PlaceApi {
 					@AuthorizationScope(scope = "read", description = "read data"),
 					@AuthorizationScope(scope = "write", description = "modify data")
 			})
-	}, tags = {"place",})
+	})
 	@ApiResponses(value = {
 			@ApiResponse(code = 200, message = "Place has been updated successfully."),
 			@ApiResponse(code = 400, message = "User not sent name or place"),

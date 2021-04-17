@@ -22,7 +22,7 @@ import javax.validation.Valid;
 @RequestMapping(value = "")
 public interface LoginApi {
 
-	@ApiOperation(value = "Loggin in to the system", nickname = "signIn", notes = "", tags = {"auth",})
+	@ApiOperation(value = "Loggin in to the system", nickname = "signIn", notes = "")
 	@ApiResponses(value = {
 			@ApiResponse(code = 200, message = "User logged in correctly"),
 			@ApiResponse(code = 400, message = "Wrong password or email"),

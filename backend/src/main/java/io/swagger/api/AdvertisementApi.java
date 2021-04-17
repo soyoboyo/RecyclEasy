@@ -28,7 +28,7 @@ public interface AdvertisementApi {
 					@AuthorizationScope(scope = "read", description = "read data"),
 					@AuthorizationScope(scope = "write", description = "modify data")
 			})
-	}, tags = {"advertisement",})
+	})
 	@ApiResponses(value = {
 			@ApiResponse(code = 200, message = "Advertisement create successfully."),
 			@ApiResponse(code = 403, message = "Only admin has access to this operation.")})
@@ -40,7 +40,7 @@ public interface AdvertisementApi {
 //	ResponseEntity<Advertisement> createAdvertisement(@ApiParam(value = "Authorization header", required = true) @RequestHeader(value = "Authorization", required = true) String authorization, @ApiParam(value = "Advertisement creation body", required = true) @Valid @RequestBody AdvertisementCreationData body);
 
 
-	@ApiOperation(value = "Shows all published advertisements", nickname = "allAdvertisements", notes = "", response = Advertisement.class, responseContainer = "List", tags = {"advertisement",})
+	@ApiOperation(value = "Shows all published advertisements", nickname = "allAdvertisements", notes = "", response = Advertisement.class, responseContainer = "List")
 	@ApiResponses(value = {
 			@ApiResponse(code = 200, message = "All published advertisements", response = Advertisement.class, responseContainer = "List")})
 	@RequestMapping(value = "/getAll",
@@ -55,7 +55,7 @@ public interface AdvertisementApi {
 					@AuthorizationScope(scope = "read", description = "read data"),
 					@AuthorizationScope(scope = "write", description = "modify data")
 			})
-	}, tags = {"admin",})
+	})
 	@ApiResponses(value = {
 			@ApiResponse(code = 200, message = "Advertisement approved successfully."),
 			@ApiResponse(code = 403, message = "Only admin has access to this operation."),
@@ -72,7 +72,7 @@ public interface AdvertisementApi {
 					@AuthorizationScope(scope = "read", description = "read data"),
 					@AuthorizationScope(scope = "write", description = "modify data")
 			})
-	}, tags = {"advertisement",})
+	})
 	@ApiResponses(value = {
 			@ApiResponse(code = 200, message = "Advertisement deleted successfully"),
 			@ApiResponse(code = 403, message = "User not authorized."),
@@ -89,7 +89,7 @@ public interface AdvertisementApi {
 					@AuthorizationScope(scope = "read", description = "read data"),
 					@AuthorizationScope(scope = "write", description = "modify data")
 			})
-	}, tags = {"admin",})
+	})
 	@ApiResponses(value = {
 			@ApiResponse(code = 200, message = "Advertisement rejected successfully."),
 			@ApiResponse(code = 403, message = "Only admin has access to this operation."),
@@ -106,7 +106,7 @@ public interface AdvertisementApi {
 					@AuthorizationScope(scope = "read", description = "read data"),
 					@AuthorizationScope(scope = "write", description = "modify data")
 			})
-	}, tags = {"advertisement",})
+	})
 	@ApiResponses(value = {
 			@ApiResponse(code = 200, message = "Advertisement updated successfully"),
 			@ApiResponse(code = 403, message = "User not authorized."),
