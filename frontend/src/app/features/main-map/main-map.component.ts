@@ -1,13 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import Map from 'ol/Map';
-import View from 'ol/View';
-import OSM from 'ol/source/OSM';
-import * as olProj from 'ol/proj';
-import TileLayer from 'ol/layer/Tile';
-// import * as ol from 'openlayers';
+import { Component, OnInit, ViewChild } from '@angular/core';
 
-declare var ol: any;
-
+/// <reference types="@types/googlemaps" />
 @Component({
 	selector: 'app-main-map',
 	templateUrl: './main-map.component.html',
@@ -16,9 +9,13 @@ declare var ol: any;
 export class MainMapComponent implements OnInit {
 
 
-	map;
+	@ViewChild('gmap', { static: true }) gmapElement: any;
+	map: google.maps.Map;
+
 	latitude: number = 51.107901;
 	longitude: number = 17.030851;
+	lat: any;
+	lon: any;
 	wasteCategories = ["Batteries", "Electronics", "Glass", "Medical", "Metals", "Plastic", "Other"]
 	places = [
 		{
@@ -32,39 +29,28 @@ export class MainMapComponent implements OnInit {
 	constructor() {
 	}
 
-	ngOnInit(): void {
-		this.map = new Map({
-			target: 'places_map',
-			layers: [
-				new TileLayer({
-					source: new OSM()
-				})
-			],
-			view: new View({
-				center: olProj.fromLonLat([this.longitude, this.latitude]),
-				zoom: 8
-			})
-		});
 
-		var vectorLayer = new ol.layer.Vector({
-			source: new ol.source.Vector({
-				features: [new ol.Feature({
-					geometry: new ol.geom.Point(ol.proj.fromLonLat([this.latitude, this.longitude])),
-					// geometry: new ol.geom.Point(ol.proj.transform([parseFloat(String(this.longitude)), parseFloat(String(this.latitude))], 'EPSG:4326', 'EPSG:3857')),
-				})]
-			}),
-			// style: new ol.style.Style({
-			// 	image: new ol.style.Icon({
-			// 		anchor: [1, 1],
-			// 		anchorXUnits: "fraction",
-			// 		anchorYUnits: "fraction",
-			// 		src: "https://openlayers.org/en/v4.6.4/examples/data/icon.png"
-			// 	})
-			// })
+	ngOnInit() {
+		var mapProp = {
+			center: new google.maps.LatLng(this.latitude, this.longitude),
+			zoom: 15,
+			mapTypeId: google.maps.MapTypeId.ROADMAP
+		};
+
+		this.map = new google.maps.Map(this.gmapElement.nativeElement, mapProp);
+		const myLatLng = { lat: this.latitude, lng: this.longitude };
+		new google.maps.Marker({
+			position: myLatLng,
+			map: this.map,
+			title: "Hello World!",
+			label: "my marker"
 		});
-		this.map.addLayer(vectorLayer);
+		navigator.geolocation.getCurrentPosition((position) => {
+			console.log("Got position", position.coords);
+			this.lat = position.coords.latitude;
+			this.lon = position.coords.longitude;
+		});
+		console.log(this.lat + ' ' + this.lon);
 	}
-
-
 
 }
