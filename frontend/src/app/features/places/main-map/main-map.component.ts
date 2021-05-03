@@ -20,7 +20,7 @@ export class MainMapComponent implements OnInit {
 	userLon: any;
 
 	@Input() selectedLatlng;
-
+	currentMarker = null;
 
 	wasteCategories = ["Batteries", "Electronics", "Glass", "Medical", "Metals", "Plastic", "Other"]
 	places = [
@@ -85,10 +85,16 @@ export class MainMapComponent implements OnInit {
 	}
 
 	placeMarker(location): void {
-		new google.maps.Marker({
+		if (this.currentMarker && this.currentMarker.setMap) {
+			this.currentMarker.setMap(null);
+		}
+
+		this.currentMarker = new google.maps.Marker({
 			position: location,
 			map: this.map
 		});
+
+
 	}
 
 }
