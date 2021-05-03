@@ -2,6 +2,7 @@ import { Component, Input, OnInit, ViewChild } from '@angular/core';
 /// <reference types="@types/googlemaps" />
 // @ts-ignore
 import {} from 'googlemaps';
+import { RestService } from '../../../services/rest/rest.service';
 
 @Component({
 	selector: 'app-main-map',
@@ -23,18 +24,12 @@ export class MainMapComponent implements OnInit {
 	currentMarker = null;
 
 	wasteCategories = ["Batteries", "Electronics", "Glass", "Medical", "Metals", "Plastic", "Other"]
-	places = [
-		{
-			name: "asdfasd",
-			adress: "asdfasd",
-			latitude: "asdfasd",
-			longitude: "asdfasdfasdf"
-		}
-	];
+	places = [];
 
-	constructor() {
+	constructor(private http: RestService) {
 
 	}
+
 
 	async getLocationSimple() {
 		await navigator.geolocation.getCurrentPosition((position) => {
@@ -46,7 +41,7 @@ export class MainMapComponent implements OnInit {
 				position: myLatLng,
 				map: this.map,
 				title: "Hello World!",
-				label: "my marker"
+				label: "YOU ARE HERE"
 			});
 			this.map.setCenter(myLatLng)
 
@@ -57,6 +52,7 @@ export class MainMapComponent implements OnInit {
 	}
 
 	ngOnInit() {
+		this.getPlaces()
 		this.getLocationSimple();
 		// console.log(this.userLat + ' ' + this.userLon);
 		var mapProp = {
@@ -66,13 +62,6 @@ export class MainMapComponent implements OnInit {
 		};
 
 		this.map = new google.maps.Map(this.gmapElement.nativeElement, mapProp);
-		const myLatLng = { lat: this.userLat, lng: this.userLon };
-		new google.maps.Marker({
-			position: myLatLng,
-			map: this.map,
-			title: "Hello World!",
-			label: "YOU ARE HERE"
-		});
 
 		google.maps.event.addListener(this.map, 'click', (event) => {
 			this.selectedLatlng = event.latLng.toJSON();
@@ -94,7 +83,19 @@ export class MainMapComponent implements OnInit {
 			map: this.map
 		});
 
+	}
 
+	async getPlaces() {
+		this.places = await this.http.getAll('/place/getAll');
+		console.log(this.places);
+		this.places.forEach((p) => {
+			new google.maps.Marker({
+				position: { lat: p.latitude, lng: p.longitude },
+				map: this.map,
+				label: p.name,
+				title: p.address
+			});
+		})
 	}
 
 }

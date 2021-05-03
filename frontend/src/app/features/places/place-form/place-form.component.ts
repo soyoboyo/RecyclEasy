@@ -28,6 +28,7 @@ export class PlaceFormComponent implements OnInit, OnChanges {
 
 	}
 
+
 	submit(): void {
 		console.log(this.placeForm.value);
 		let body = this.placeForm.value;
