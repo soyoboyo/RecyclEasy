@@ -1,0 +1,44 @@
+<div class="container mat-elevation-z20">
+	<mat-card class=" mat-elevation-z10">
+		<h1>Add new place on the map</h1>
+
+		<form [formGroup]="placeForm" class="place-form">
+
+			<mat-form-field class="place-form-field">
+				<mat-label>Name</mat-label>
+				<input formControlName="name"
+					   matInput
+					   placeholder="Name">
+			</mat-form-field>
+
+			<mat-form-field class="place-form-field">
+				<mat-label>Address</mat-label>
+				<input formControlName="address"
+					   matInput
+					   placeholder="Address">
+			</mat-form-field>
+
+			<mat-form-field class="place-form-field">
+				<mat-label>Latitude</mat-label>
+				<input formControlName="latitude"
+					   matInput
+					   placeholder="Latitude">
+			</mat-form-field>
+
+			<mat-form-field class="place-form-field">
+				<mat-label>Longitude</mat-label>
+				<input formControlName="longitude"
+					   matInput
+					   placeholder="Longitude">
+			</mat-form-field>
+
+			<button mat-raised-button
+					color="warn"
+					style="background-color: #35C31E"
+					(click)="submit()">
+				Submit
+			</button>
+		</form>
+	</mat-card>
+
+</div>

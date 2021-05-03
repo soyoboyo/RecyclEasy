@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 /// <reference types="@types/googlemaps" />
 // @ts-ignore
 import {} from 'googlemaps';
@@ -18,6 +18,10 @@ export class MainMapComponent implements OnInit {
 	longitude: number = 17.030851;
 	userLat: any;
 	userLon: any;
+
+	@Input() selectedLatlng;
+
+
 	wasteCategories = ["Batteries", "Electronics", "Glass", "Medical", "Metals", "Plastic", "Other"]
 	places = [
 		{
@@ -53,9 +57,8 @@ export class MainMapComponent implements OnInit {
 	}
 
 	ngOnInit() {
-
 		this.getLocationSimple();
-		console.log(this.userLat + ' ' + this.userLon);
+		// console.log(this.userLat + ' ' + this.userLon);
 		var mapProp = {
 			center: new google.maps.LatLng(this.latitude, this.longitude),
 			zoom: 15,
@@ -71,8 +74,21 @@ export class MainMapComponent implements OnInit {
 			label: "YOU ARE HERE"
 		});
 
+		google.maps.event.addListener(this.map, 'click', (event) => {
+			this.selectedLatlng = event.latLng.toJSON();
+			// console.log(this.selectedLatLng);
+
+			this.placeMarker(event.latLng);
+		});
+
 
 	}
 
+	placeMarker(location): void {
+		new google.maps.Marker({
+			position: location,
+			map: this.map
+		});
+	}
 
 }

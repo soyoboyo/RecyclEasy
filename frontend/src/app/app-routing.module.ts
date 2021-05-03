@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { MainMapComponent } from './features/main-map/main-map.component';
 import { AdvertisementsComponent } from './features/advertisements/advertisements.component';
-import { LoginComponent } from './features/login/login.component';
-import { RegisterComponent } from './features/register/register.component';
 import { PendingRequestsComponent } from './features/pending-requests/pending-requests.component';
 import { UserPanelComponent } from './features/user-panel/user-panel.component';
 import { AdFormComponent } from './features/advertisements/ad-form/ad-form.component';
+import { MainMapComponent } from './features/places/main-map/main-map.component';
+import { LoginComponent } from './features/auth/login/login.component';
+import { RegisterComponent } from './features/auth/register/register.component';
 
 const routes: Routes = [
 	{ path: '', component: MainMapComponent, pathMatch: 'full' },
