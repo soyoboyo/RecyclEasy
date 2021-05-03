@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-
 /// <reference types="@types/googlemaps" />
+// @ts-ignore
+import {} from 'googlemaps';
+
 @Component({
 	selector: 'app-main-map',
 	templateUrl: './main-map.component.html',
@@ -14,8 +16,8 @@ export class MainMapComponent implements OnInit {
 
 	latitude: number = 51.107901;
 	longitude: number = 17.030851;
-	lat: any;
-	lon: any;
+	userLat: any;
+	userLon: any;
 	wasteCategories = ["Batteries", "Electronics", "Glass", "Medical", "Metals", "Plastic", "Other"]
 	places = [
 		{
@@ -27,10 +29,33 @@ export class MainMapComponent implements OnInit {
 	];
 
 	constructor() {
+
 	}
 
+	async getLocationSimple() {
+		await navigator.geolocation.getCurrentPosition((position) => {
+			console.log("Got position", position.coords);
+			this.userLat = position.coords.latitude;
+			this.userLon = position.coords.longitude;
+			const myLatLng = { lat: position.coords.latitude, lng: position.coords.longitude };
+			new google.maps.Marker({
+				position: myLatLng,
+				map: this.map,
+				title: "Hello World!",
+				label: "my marker"
+			});
+			this.map.setCenter(myLatLng)
+
+		}, () => {
+			console.error('problem with location')
+		}, { timeout: 5000 });
+		console.log('process location');
+	}
 
 	ngOnInit() {
+
+		this.getLocationSimple();
+		console.log(this.userLat + ' ' + this.userLon);
 		var mapProp = {
 			center: new google.maps.LatLng(this.latitude, this.longitude),
 			zoom: 15,
@@ -38,19 +63,16 @@ export class MainMapComponent implements OnInit {
 		};
 
 		this.map = new google.maps.Map(this.gmapElement.nativeElement, mapProp);
-		const myLatLng = { lat: this.latitude, lng: this.longitude };
+		const myLatLng = { lat: this.userLat, lng: this.userLon };
 		new google.maps.Marker({
 			position: myLatLng,
 			map: this.map,
 			title: "Hello World!",
-			label: "my marker"
+			label: "YOU ARE HERE"
 		});
-		navigator.geolocation.getCurrentPosition((position) => {
-			console.log("Got position", position.coords);
-			this.lat = position.coords.latitude;
-			this.lon = position.coords.longitude;
-		});
-		console.log(this.lat + ' ' + this.lon);
+
+
 	}
+
 
 }
