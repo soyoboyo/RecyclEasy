@@ -5,7 +5,9 @@
  */
 package io.swagger.api;
 
+import io.swagger.DTOs.PlaceCreationDTO;
 import io.swagger.annotations.*;
+import io.swagger.entities.Place;
 import io.swagger.model.*;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -53,7 +55,7 @@ public interface PlaceApi {
 			produces = {"application/json"},
 			consumes = {"application/json"},
 			method = RequestMethod.POST)
-	ResponseEntity<Void> createPlace(@ApiParam(value = "Authorization header", required = true) @RequestHeader(value = "Authorization", required = true) String authorization, @ApiParam(value = "Place creation payload", required = true) @Valid @RequestBody PlaceCreationData body);
+	ResponseEntity<Place> createPlace(@ApiParam(value = "Place creation payload", required = true) @Valid @RequestBody PlaceCreationDTO body);
 
 
 	@ApiOperation(value = "Delete place", nickname = "deletePlace", notes = "", authorizations = {
@@ -83,14 +85,14 @@ public interface PlaceApi {
 	ResponseEntity<List<Place>> getAllPlaces();
 
 
-	@ApiOperation(value = "Get places by specified filters", nickname = "getFilteredPlaces", notes = "", response = Place.class)
+	@ApiOperation(value = "Get places by specified filters", nickname = "getFilteredPlaces", notes = "", response = PlaceModel.class)
 	@ApiResponses(value = {
-			@ApiResponse(code = 200, message = "Returns objects meeting specified filters.", response = Place.class)})
+			@ApiResponse(code = 200, message = "Returns objects meeting specified filters.", response = PlaceModel.class)})
 	@RequestMapping(value = "/place/filter",
 			produces = {"application/json"},
 			consumes = {"application/json", "application/x-www-form-urlencoded"},
 			method = RequestMethod.POST)
-	ResponseEntity<Place> getFilteredPlaces(@ApiParam(value = "Place update payload", required = true) @Valid @RequestBody PlaceFilterData body);
+	ResponseEntity<PlaceModel> getFilteredPlaces(@ApiParam(value = "Place update payload", required = true) @Valid @RequestBody PlaceFilterData body);
 
 
 	@ApiOperation(value = "Get place details", nickname = "placeDetails", notes = "", response = PlaceDetails.class)

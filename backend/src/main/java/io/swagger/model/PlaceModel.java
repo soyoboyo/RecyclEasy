@@ -15,7 +15,7 @@ import java.util.Objects;
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2021-04-15T06:02:20.320+02:00")
 
 
-public class Place {
+public class PlaceModel {
 	@JsonProperty("id")
 	private BigDecimal id = null;
 
@@ -31,7 +31,7 @@ public class Place {
 	@JsonProperty("locationY")
 	private BigDecimal locationY = null;
 
-	public Place id(BigDecimal id) {
+	public PlaceModel id(BigDecimal id) {
 		this.id = id;
 		return this;
 	}
@@ -53,7 +53,7 @@ public class Place {
 		this.id = id;
 	}
 
-	public Place name(String name) {
+	public PlaceModel name(String name) {
 		this.name = name;
 		return this;
 	}
@@ -74,7 +74,7 @@ public class Place {
 		this.name = name;
 	}
 
-	public Place address(String address) {
+	public PlaceModel address(String address) {
 		this.address = address;
 		return this;
 	}
@@ -95,7 +95,7 @@ public class Place {
 		this.address = address;
 	}
 
-	public Place locationX(BigDecimal locationX) {
+	public PlaceModel locationX(BigDecimal locationX) {
 		this.locationX = locationX;
 		return this;
 	}
@@ -117,7 +117,7 @@ public class Place {
 		this.locationX = locationX;
 	}
 
-	public Place locationY(BigDecimal locationY) {
+	public PlaceModel locationY(BigDecimal locationY) {
 		this.locationY = locationY;
 		return this;
 	}
@@ -148,7 +148,7 @@ public class Place {
 		if (o == null || getClass() != o.getClass()) {
 			return false;
 		}
-		Place place = (Place) o;
+		PlaceModel place = (PlaceModel) o;
 		return Objects.equals(this.id, place.id) &&
 				Objects.equals(this.name, place.name) &&
 				Objects.equals(this.address, place.address) &&

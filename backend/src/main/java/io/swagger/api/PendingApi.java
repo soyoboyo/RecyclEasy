@@ -6,7 +6,7 @@
 package io.swagger.api;
 
 import io.swagger.annotations.*;
-import io.swagger.model.Place;
+import io.swagger.model.PlaceModel;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestHeader;
@@ -22,17 +22,17 @@ import java.util.List;
 @RequestMapping(value = "")
 public interface PendingApi {
 
-	@ApiOperation(value = "Get all pending suggestions and advertisments waiting for approval", nickname = "allPending", notes = "", response = Place.class, responseContainer = "List", authorizations = {
+	@ApiOperation(value = "Get all pending suggestions and advertisments waiting for approval", nickname = "allPending", notes = "", response = PlaceModel.class, responseContainer = "List", authorizations = {
 			@Authorization(value = "recycleasy_auth", scopes = {
 					@AuthorizationScope(scope = "read", description = "read data")
 			})
 	})
 	@ApiResponses(value = {
-			@ApiResponse(code = 200, message = "All published advertisements", response = Place.class, responseContainer = "List")})
+			@ApiResponse(code = 200, message = "All published advertisements", response = PlaceModel.class, responseContainer = "List")})
 	@RequestMapping(value = "/pending/getAll",
 			produces = {"application/json"},
 			consumes = {"application/json"},
 			method = RequestMethod.GET)
-	ResponseEntity<List<Place>> allPending(@ApiParam(value = "Authorization header", required = true) @RequestHeader(value = "Authorization", required = true) String authorization);
+	ResponseEntity<List<PlaceModel>> allPending(@ApiParam(value = "Authorization header", required = true) @RequestHeader(value = "Authorization", required = true) String authorization);
 
 }
