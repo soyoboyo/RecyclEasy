@@ -1,9 +1,9 @@
-package io.swagger.aspects;
+package io.swagger.aspects.timings.models;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class AggregatedStatistic {
+public class AggregatedTimingStatistics {
 
 	private String className;
 	private String methodName;
@@ -11,7 +11,7 @@ public class AggregatedStatistic {
 	private long averageExecutionTime = 0;
 	private List<StatisticResponse> statistics;
 
-	public AggregatedStatistic(String className, String methodName) {
+	public AggregatedTimingStatistics(String className, String methodName) {
 		this.className = className;
 		this.methodName = methodName;
 		statistics = new ArrayList<>();

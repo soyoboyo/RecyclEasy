@@ -1,4 +1,4 @@
-package io.swagger.aspects;
+package io.swagger.aspects.timings.models;
 
 import org.hibernate.annotations.CreationTimestamp;
 

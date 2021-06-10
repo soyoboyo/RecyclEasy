@@ -1,5 +1,6 @@
-package io.swagger.aspects;
+package io.swagger.aspects.timings;
 
+import io.swagger.aspects.timings.logic.StatisticService;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -16,7 +17,7 @@ public class StatisticAspect {
 		this.statisticService = statisticService;
 	}
 
-	@Around("execution(* io.swagger.api.impl.*.*(..))")
+	@Around("execution(* io.swagger.controllers.*.*(..))")
 	public Object measureExecutionTime(ProceedingJoinPoint joinPoint) throws Throwable {
 		long start = System.currentTimeMillis();
 		Object proceed = joinPoint.proceed();
