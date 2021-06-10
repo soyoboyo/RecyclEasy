@@ -6,6 +6,7 @@ import io.swagger.repositories.PlaceRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -33,5 +34,15 @@ public class PlaceService {
 		Optional<Place> p = placeRepository.findById(id);
 		p.ifPresent(placeRepository::delete);
 	}
+
+	public List<Place> getAllPlacesByCityAndGarbageType(String city, String garbageTypes) {
+
+		List<Place> allPlacesInCity = placeRepository.findByCity(city);
+		for (Place p : allPlacesInCity) {
+
+		}
+		return new ArrayList<>();
+	}
+
 
 }

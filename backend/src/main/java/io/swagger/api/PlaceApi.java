@@ -8,7 +8,10 @@ package io.swagger.api;
 import io.swagger.DTOs.PlaceCreationDTO;
 import io.swagger.annotations.*;
 import io.swagger.entities.Place;
-import io.swagger.model.*;
+import io.swagger.model.PlaceCreationData;
+import io.swagger.model.PlaceDetails;
+import io.swagger.model.PlaceFilterData;
+import io.swagger.model.PlaceUpdateData;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -85,14 +88,14 @@ public interface PlaceApi {
 	ResponseEntity<List<Place>> getAllPlaces();
 
 
-	@ApiOperation(value = "Get places by specified filters", nickname = "getFilteredPlaces", notes = "", response = PlaceModel.class)
+	@ApiOperation(value = "Get places by specified filters", nickname = "getFilteredPlaces", notes = "", response = Place.class)
 	@ApiResponses(value = {
-			@ApiResponse(code = 200, message = "Returns objects meeting specified filters.", response = PlaceModel.class)})
+			@ApiResponse(code = 200, message = "Returns objects meeting specified filters.", response = Place.class)})
 	@RequestMapping(value = "/place/filter",
 			produces = {"application/json"},
 			consumes = {"application/json", "application/x-www-form-urlencoded"},
 			method = RequestMethod.POST)
-	ResponseEntity<PlaceModel> getFilteredPlaces(@ApiParam(value = "Place update payload", required = true) @Valid @RequestBody PlaceFilterData body);
+	ResponseEntity<List<Place>> getFilteredPlaces(@ApiParam(value = "Place update payload", required = true) @Valid @RequestBody PlaceFilterData body);
 
 
 	@ApiOperation(value = "Get place details", nickname = "placeDetails", notes = "", response = PlaceDetails.class)

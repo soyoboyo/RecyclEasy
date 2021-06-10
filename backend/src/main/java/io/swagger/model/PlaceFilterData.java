@@ -20,9 +20,9 @@ public class PlaceFilterData {
 	@JsonProperty("city")
 	private String city = null;
 
-	@JsonProperty("garbagetypes")
+	@JsonProperty("garbageTypes")
 	@Valid
-	private List<String> garbagetypes = null;
+	private List<String> garbageTypes = null;
 
 	public PlaceFilterData city(String city) {
 		this.city = city;
@@ -46,15 +46,15 @@ public class PlaceFilterData {
 	}
 
 	public PlaceFilterData garbagetypes(List<String> garbagetypes) {
-		this.garbagetypes = garbagetypes;
+		this.garbageTypes = garbagetypes;
 		return this;
 	}
 
 	public PlaceFilterData addGarbagetypesItem(String garbagetypesItem) {
-		if (this.garbagetypes == null) {
-			this.garbagetypes = new ArrayList<String>();
+		if (this.garbageTypes == null) {
+			this.garbageTypes = new ArrayList<String>();
 		}
-		this.garbagetypes.add(garbagetypesItem);
+		this.garbageTypes.add(garbagetypesItem);
 		return this;
 	}
 
@@ -67,11 +67,11 @@ public class PlaceFilterData {
 
 
 	public List<String> getGarbagetypes() {
-		return garbagetypes;
+		return garbageTypes;
 	}
 
 	public void setGarbagetypes(List<String> garbagetypes) {
-		this.garbagetypes = garbagetypes;
+		this.garbageTypes = garbagetypes;
 	}
 
 
@@ -85,12 +85,12 @@ public class PlaceFilterData {
 		}
 		PlaceFilterData placeFilterData = (PlaceFilterData) o;
 		return Objects.equals(this.city, placeFilterData.city) &&
-				Objects.equals(this.garbagetypes, placeFilterData.garbagetypes);
+				Objects.equals(this.garbageTypes, placeFilterData.garbageTypes);
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(city, garbagetypes);
+		return Objects.hash(city, garbageTypes);
 	}
 
 	@Override
@@ -99,7 +99,7 @@ public class PlaceFilterData {
 		sb.append("class PlaceFilterData {\n");
 
 		sb.append("    city: ").append(toIndentedString(city)).append("\n");
-		sb.append("    garbagetypes: ").append(toIndentedString(garbagetypes)).append("\n");
+		sb.append("    garbagetypes: ").append(toIndentedString(garbageTypes)).append("\n");
 		sb.append("}");
 		return sb.toString();
 	}
@@ -113,6 +113,10 @@ public class PlaceFilterData {
 			return "null";
 		}
 		return o.toString().replace("\n", "\n    ");
+	}
+
+	public String getConcatGarbageTypes() {
+		return String.join(",", garbageTypes);
 	}
 }
 

@@ -5,7 +5,10 @@ import io.swagger.DTOs.PlaceCreationDTO;
 import io.swagger.annotations.ApiParam;
 import io.swagger.api.PlaceApi;
 import io.swagger.entities.Place;
-import io.swagger.model.*;
+import io.swagger.model.PlaceCreationData;
+import io.swagger.model.PlaceDetails;
+import io.swagger.model.PlaceFilterData;
+import io.swagger.model.PlaceUpdateData;
 import io.swagger.services.PlaceService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,7 +26,7 @@ import java.util.List;
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2021-04-15T06:02:20.320+02:00")
 
 @RestController
-@RequestMapping("/place")
+//@RequestMapping("/place")
 public class PlaceApiController implements PlaceApi {
 
 	private static final Logger log = LoggerFactory.getLogger(PlaceApiController.class);
@@ -63,18 +66,11 @@ public class PlaceApiController implements PlaceApi {
 		return new ResponseEntity<List<Place>>(places, HttpStatus.OK);
 	}
 
-	public ResponseEntity<PlaceModel> getFilteredPlaces(@ApiParam(value = "Place update payload", required = true) @Valid @RequestBody PlaceFilterData body) {
+	public ResponseEntity<List<Place>> getFilteredPlaces(@ApiParam(value = "Place update payload", required = true) @Valid @RequestBody PlaceFilterData body) {
 		String accept = request.getHeader("Accept");
-		if (accept != null && accept.contains("application/json")) {
-			try {
-				return new ResponseEntity<PlaceModel>(objectMapper.readValue("{  \"locationY\" : 1.46581298050294517310021547018550336360931396484375,  \"address\" : \"address\",  \"locationX\" : 6.02745618307040320615897144307382404804229736328125,  \"name\" : \"name\",  \"id\" : 0.80082819046101150206595775671303272247314453125}", PlaceModel.class), HttpStatus.NOT_IMPLEMENTED);
-			} catch (IOException e) {
-				log.error("Couldn't serialize response for content type application/json", e);
-				return new ResponseEntity<PlaceModel>(HttpStatus.INTERNAL_SERVER_ERROR);
-			}
-		}
 
-		return new ResponseEntity<PlaceModel>(HttpStatus.NOT_IMPLEMENTED);
+		List<Place> places = placeService.getAllPlacesByCityAndGarbageType(body.getCity(), body.getConcatGarbageTypes());
+		return new ResponseEntity<List<Place>>(places, HttpStatus.OK);
 	}
 
 	public ResponseEntity<PlaceDetails> placeDetails(@ApiParam(value = "ID of place", required = true) @PathVariable("placeId") Long placeId) {

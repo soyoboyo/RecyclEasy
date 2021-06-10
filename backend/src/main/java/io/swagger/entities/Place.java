@@ -22,6 +22,9 @@ public class Place {
 	@JsonProperty("name")
 	private String name = null;
 
+	@JsonProperty("city")
+	private String city = null;
+
 	@JsonProperty("address")
 	private String address = null;
 
@@ -30,4 +33,7 @@ public class Place {
 
 	@JsonProperty("longitude")
 	private Float longitude = null;
+
+	@JsonProperty("garbageTypes")
+	private String garbageTypes = null;
 }
